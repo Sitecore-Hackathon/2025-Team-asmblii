@@ -6,22 +6,28 @@ using SolrNet;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 /******** OpenApi ********/
 builder.Services.AddOpenApi();
 
 
 /******** Solr ********/
-builder.Services.AddSolrNet<SolrSearchResultEntry>("http://localhost:8983/solr/test");  //localhost to be replaced by?
+
+var solrUri = builder.Configuration["Solr:Uri"];
+
+builder.Services.AddSolrNet<SolrSearchResultEntry>(solrUri);  //localhost to be replaced by?
 builder.Services.AddScoped<ISolrRepository, SolrRepository>();
 
 
 /******** DadJokes ********/
+
+
 builder.Services.AddHttpClient<IDadJokeService, DadJokeService>(client =>
 {
-    client.BaseAddress = new Uri("https://icanhazdadjoke.com/");
-    //ICanHazDadJoke Kindly request that contact details in form of a website or email is supplied to requests to their free API. See https://icanhazdadjoke.com/api#custom-user-agent for more info.
-    client.DefaultRequestHeaders.UserAgent.ParseAdd($"asmblii: https://github.com/Sitecore-Hackathon/2025-Team-asmblii - https://asmblii.com");
+    var icanhazdadjokesAddress = builder.Configuration["ICanHazDadJokes:Uri"] ?? throw new Exception("Baseaddress for the joke service is not set!"); 
+    var requestingParty = builder.Configuration["ICanHazDadJokes:RequestingParty"] ?? throw new Exception("If using ICanHazDadJoke they kindly request that contact details in form of a website or email is supplied to requests to their free API. See https://icanhazdadjoke.com/api#custom-user-agent for more info.");
+
+    client.BaseAddress = new Uri(icanhazdadjokesAddress);
+    client.DefaultRequestHeaders.UserAgent.ParseAdd(requestingParty);
     client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
 });
 
