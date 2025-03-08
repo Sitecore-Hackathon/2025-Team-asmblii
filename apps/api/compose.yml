@@ -1,0 +1,26 @@
+services:
+  api-solr:
+    build:
+      context: ./docker/build/solr
+      args:
+        PARENT_IMAGE: scr.sitecore.com/sxp/nonproduction/solr:8.11.2-ltsc2022
+    isolation: ${ISOLATION}
+    volumes:
+      - .\docker\data\solr:C:\data
+    environment:
+      SOLR_MODE: solrcloud
+      SOLR_LOG_LEVEL: WARN
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "powershell",
+          "-command",
+          "try { $$statusCode = (iwr http://localhost:8983/solr/admin/cores?action=STATUS -UseBasicParsing).StatusCode; if ($$statusCode -eq 200) { exit 0 } else { exit 1} } catch { exit 1 }",
+        ]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.api-solr.loadbalancer.server.port=8983"
+      - "traefik.http.routers.api-solr.entrypoints=websecure"
+      - "traefik.http.routers.api-solr.rule=Host(`api-solr.2025-team-asmblii.localhost`)"
+      - "traefik.http.routers.api-solr.tls=true"

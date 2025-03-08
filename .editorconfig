@@ -1,8 +1,14 @@
-; Top-most EditorConfig file
+; top-most EditorConfig file
 root = true
 
-; 4-column space indentation
+; defaults
 [*]
 indent_style = space
-indent_size = 4
+indent_size = 2
 trim_trailing_spaces = true
+
+; C#
+[*.{cs,vb}]
+indent_style=space
+tab_width=4
+indent_size=4

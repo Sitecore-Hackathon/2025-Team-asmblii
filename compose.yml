@@ -1,0 +1,42 @@
+include:
+  - path:
+      - ./apps/xmcloud/compose.yml
+  - path:
+      - ./apps/headnextjs/compose.yml
+  - path:
+      - ./apps/api/compose.yml
+
+services:
+  traefik:
+    image: traefik:v3.3.3-windowsservercore-ltsc2022
+    isolation: ${ISOLATION}
+    command:
+      - "--log.level=info"
+      - "--ping"
+      - "--api.insecure=true"
+      - "--providers.docker.endpoint=npipe:////./pipe/docker_engine"
+      - "--providers.docker.exposedByDefault=false"
+      - "--providers.file.directory=C:/etc/traefik/config/dynamic"
+      - "--entryPoints.websecure.address=:443"
+      - "--entryPoints.websecure.forwardedHeaders.insecure"
+    ports:
+      - "443:443"
+      - "8079:8080"
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck", "--ping"]
+    volumes:
+      - source: \\.\pipe\docker_engine\
+        target: \\.\pipe\docker_engine\
+        type: npipe
+      - ./docker/data/traefik:C:/etc/traefik
+
+  aspire:
+    image: ghcr.io/pbering/dotnet-aspire-dashboard-windows:9.0.0-ltsc2022
+    environment:
+      DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS: true
+    labels:
+      traefik.enable: true
+      traefik.http.routers.aspire.entrypoints: websecure
+      traefik.http.routers.aspire.rule: Host(`dashboard.2025-team-asmblii.localhost`)
+      traefik.http.routers.aspire.tls: true
+      traefik.http.services.aspire.loadbalancer.server.port: 18888
