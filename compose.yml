@@ -28,13 +28,13 @@ services:
         type: npipe
       - ./docker/data/traefik:C:/etc/traefik
 
-  aspire-dashboard:
+  aspire:
     image: ghcr.io/pbering/dotnet-aspire-dashboard-windows:8.1.0-ltsc2022
-    ports:
-    - 18888:18888
+    environment:
+      DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS: true
     labels:
       traefik.enable: true
       traefik.http.routers.aspire.entrypoints: websecure
-      traefik.http.routers.aspire.rule: Host(`dashboard.2025-team-asmblii.localhost`)"
+      traefik.http.routers.aspire.rule: Host(`dashboard.2025-team-asmblii.localhost`)
       traefik.http.routers.aspire.tls: true
-      traefik.http.services.aspire-dashboard.loadbalancer.server.port: 18888
+      traefik.http.services.aspire.loadbalancer.server.port: 18888
