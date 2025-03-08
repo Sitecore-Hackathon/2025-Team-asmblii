@@ -1,6 +1,6 @@
 ﻿---
-ID: "56bcb20c-c678-4ac8-888a-1ce288a07b79"
-Parent: "2c1f9fa4-3d51-4394-98eb-07f460c1b15a"
+ID: "cefeb055-bb75-4980-967e-1577a730d4ab"
+Parent: "54108be7-74da-420c-bfac-d19522d405d8"
 Template: "0a2847e6-9885-450b-b61e-f9e6528480ef"
 Path: "/sitecore/content/team-asmblii/headnextjs/Dictionary"
 BranchID: "45cf9f42-b3ac-4412-aab9-f8441c7e448e"
@@ -21,22 +21,22 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20250308T153326Z
+      Value: 20250308T155529Z
     - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
       Hint: __Owner
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "771eb689-4def-4e19-a061-36eab471821a"
+      Value: "b8f47154-763a-4e9c-89c5-620b6bc9cfb3"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250308T153326Z
+      Value: 20250308T155529Z

@@ -1,6 +1,6 @@
 ﻿---
-ID: "9c1c2ece-feef-4bcd-ad98-dc316874333e"
-Parent: "35025dd1-0590-4968-a0d9-49c4d69fadbd"
+ID: "03156b49-eda7-42f1-9455-d992e576e39c"
+Parent: "902ea3a4-f3fb-4f99-a837-d3940c3b84a9"
 Template: "52288e39-7830-4694-b62d-32a54c6ef7ba"
 Path: "/sitecore/content/team-asmblii/headnextjs/Presentation/Placeholder Settings/Partial Design"
 Languages:
@@ -10,22 +10,22 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20250308T153328Z
+      Value: 20250308T155530Z
     - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
       Hint: __Owner
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "b8552ece-e9eb-4e36-9622-a3bb294d9500"
+      Value: "125cdca3-bf45-48f4-87f3-3e337f4f5e0b"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250308T153328Z
+      Value: 20250308T155530Z

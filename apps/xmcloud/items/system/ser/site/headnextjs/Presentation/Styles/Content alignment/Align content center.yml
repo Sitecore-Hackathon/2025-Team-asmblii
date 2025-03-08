@@ -1,6 +1,6 @@
 ﻿---
-ID: "95a1779c-1bec-4769-8d0a-f7cc482db85d"
-Parent: "9a395d1e-aaad-4c3a-9c8d-ae7045371d8a"
+ID: "7f2b6ff7-63df-4901-a4ba-8c7d8f7251bc"
+Parent: "b77f1dcf-a35a-4142-94b8-1be36b957ae6"
 Template: "6b8aabef-d650-46e0-97d0-c0b04f7f016b"
 Path: "/sitecore/content/team-asmblii/headnextjs/Presentation/Styles/Content alignment/Align content center"
 BranchID: "75653e9d-3c5c-45d4-823d-1bb04474400b"
@@ -27,22 +27,22 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20250308T153331Z
+      Value: 20250308T155533Z
     - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
       Hint: __Owner
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "5dc1e7b5-30b8-4d49-9274-a184fb23b335"
+      Value: "6a453471-dee0-4d38-b32c-d1c01b193595"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250308T153331Z
+      Value: 20250308T155533Z

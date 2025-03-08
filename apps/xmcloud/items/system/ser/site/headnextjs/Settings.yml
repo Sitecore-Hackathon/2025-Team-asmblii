@@ -1,13 +1,13 @@
 ﻿---
-ID: "42dc12a9-5c15-4a37-a7e0-555740523c4b"
-Parent: "2c1f9fa4-3d51-4394-98eb-07f460c1b15a"
+ID: "a2bd6602-dd1c-49f5-ad60-3ac5b529bc2b"
+Parent: "54108be7-74da-420c-bfac-d19522d405d8"
 Template: "a3711341-7a27-4b02-ae57-42c6b89c32b8"
 Path: "/sitecore/content/team-asmblii/headnextjs/Settings"
 BranchID: "45cf9f42-b3ac-4412-aab9-f8441c7e448e"
 SharedFields:
 - ID: "0129da3f-8c86-4591-ae32-6ec923413923"
   Hint: DictionaryDomain
-  Value: "{56BCB20C-C678-4AC8-888A-1CE288A07B79}"
+  Value: "{CEFEB055-BB75-4980-967E-1577A730D4AB}"
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
   Value: "{C2DC4690-AF44-48C7-BB21-90D1AD246732}"
@@ -22,7 +22,7 @@ SharedFields:
   Value: headnextjs
 - ID: "5764d2d4-724d-4313-a81b-9246c911faff"
   Hint: AppDatasourcesPath
-  Value: "{B9282C9D-236C-4264-A303-631514C135B5}"
+  Value: "{EA84D7AA-5098-4E87-9407-9BCF087E48FB}"
 - ID: "5ca117eb-8782-4a4f-9f2f-30de31fc2e34"
   Hint: PlaceholdersPath
   Value: "{76B57CD4-AE70-4576-AB51-4C927C1DC276}"
@@ -34,7 +34,7 @@ SharedFields:
   Value: http
 - ID: "a7bbad73-b933-49ff-95c8-1c269cb35e7c"
   Hint: DictionaryPath
-  Value: "{56BCB20C-C678-4AC8-888A-1CE288A07B79}"
+  Value: "{CEFEB055-BB75-4980-967E-1577A730D4AB}"
 - ID: "af332c24-fe17-41e7-8caf-8e64c588fe72"
   Hint: EditingTheme
   Value: "{3BCAB9EF-1E4F-4C23-B452-783BB82AA686}"
@@ -63,22 +63,22 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20250308T153327Z
+      Value: 20250308T155529Z
     - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
       Hint: __Owner
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "17058c46-f468-412e-acba-d0cbf528c5f7"
+      Value: "2ff3b1a4-f4a8-4704-b601-772c34d6e810"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250308T153327Z
+      Value: 20250308T155530Z

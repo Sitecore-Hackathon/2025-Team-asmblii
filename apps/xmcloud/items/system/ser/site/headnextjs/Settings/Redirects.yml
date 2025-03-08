@@ -1,6 +1,6 @@
 ﻿---
-ID: "079986f1-21cf-4a8a-aa54-11c89529d9f6"
-Parent: "42dc12a9-5c15-4a37-a7e0-555740523c4b"
+ID: "e4f6866b-c9bf-4b97-8b02-636db0c2d60b"
+Parent: "a2bd6602-dd1c-49f5-ad60-3ac5b529bc2b"
 Template: "c2dc4690-af44-48c7-bb21-90d1ad246732"
 Path: "/sitecore/content/team-asmblii/headnextjs/Settings/Redirects"
 BranchID: "50213d5e-83f8-4fa7-a91d-825e61c7b8a2"
@@ -15,22 +15,22 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20250308T153327Z
+      Value: 20250308T155530Z
     - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
       Hint: __Owner
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "35d681a9-e671-4449-b261-eb6953882e8a"
+      Value: "622ff43c-599c-4836-884b-f088dfbce3bf"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250308T153327Z
+      Value: 20250308T155530Z
