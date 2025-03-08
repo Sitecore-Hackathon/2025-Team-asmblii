@@ -1,7 +1,7 @@
 @echo off
 echo.
 echo ### Restore packages
-rem call npm ci
+call npm ci
 echo.
 echo ### Building app (and SSG)
 call npm run build

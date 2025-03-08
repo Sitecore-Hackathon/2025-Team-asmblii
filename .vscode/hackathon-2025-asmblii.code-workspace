@@ -2,15 +2,19 @@
     "folders": [
         {
             "name": "HeadNextJss",
-            "path": "apps/headnextjs"
+            "path": "../apps/headnextjs"
+        },
+        {
+            "name": "Api",
+            "path": "../apps/api"
         },
         {
             "name": "XmCloudLocal",
-            "path": "apps/xmcloud"
+            "path": "../apps/xmcloud"
         },
         {
             "name": "Root",
-            "path": "."
+            "path": ".."
         }
     ],
     "settings": {
