@@ -12,14 +12,14 @@ public class DadJoke
     /// </summary>
     /// <value>The joke ID.</value>
     [JsonProperty("id")]
-    public string Id { get; set; }
+    public string Id { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the joke.
     /// </summary>
     /// <value>The joke.</value>
     [JsonProperty("joke")]
-    public string Joke { get; set; }
+    public string Joke { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the status.
