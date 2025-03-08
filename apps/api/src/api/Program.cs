@@ -100,26 +100,25 @@ app.MapGet("/test", () =>
 // add Solr endpoint
 app.MapGet("/solrsearch", async (ISolrRepository solrRepository, string query, int start, int rows) =>
 {
-    var results = await solrRepository.Search(query, start, rows);
+    var results = await solrRepository.SearchAsync(query, start, rows);
     return results;
 }).WithName("SolrSearch");
 
-app.MapGet("/solrping", async (ISolrRepository solrRepository) =>
+app.MapGet("/solrping", async (ISolrService solrService) =>
 {
-    var results = await solrRepository.Ping();
+    var results = await solrService.PingAsync();
     return results;
 }).WithName("SolrPing");
 
 app.MapGet("solrcorestatus", (ISolrCoreAdmin solrCoreAdmin) =>
 {
     IList<CoreResult> coreStatus = solrCoreAdmin.Status();
-
-    return true;
+    return coreStatus;
 }).WithName("SolrCoreStatus");
 
 app.MapPost("solrpopulateindex/{count}", async (ISolrService solrService, int count) =>
 {
-    var results = await solrService.PopulateIndex(count);
+    var results = await solrService.PopulateIndexAsync(count);
     
     return results;
 }).WithName("SolrPopulateIndex");
