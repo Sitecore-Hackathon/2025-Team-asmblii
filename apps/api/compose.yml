@@ -10,6 +10,15 @@ services:
     environment:
       SOLR_MODE: solrcloud
       SOLR_LOG_LEVEL: WARN
+      SOLR_HEAP: 2000M
+      SOLR_JAVA_MEM: -Xms2000M -Xmx2000M
+      SOLR_OPTS: -Dlog4j2.formatMsgNoLookups=true -javaagent:C:/solr/server/solr-webapp/webapp/WEB-INF/lib/opentelemetry-javaagent.jar
+      OTEL_SERVICE_NAME: api-solr
+      OTEL_JAVAAGENT_LOGGING: simple
+      OTEL_JAVAAGENT_DEBUG: "false"
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://aspire:18889
+      OTEL_EXPORTER_OTLP_PROTOCOL: grpc
+      OTEL_TRACES_SAMPLER: always_on
     healthcheck:
       test:
         [
@@ -24,3 +33,8 @@ services:
       - "traefik.http.routers.api-solr.entrypoints=websecure"
       - "traefik.http.routers.api-solr.rule=Host(`api-solr.2025-team-asmblii.localhost`)"
       - "traefik.http.routers.api-solr.tls=true"
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 3GB
