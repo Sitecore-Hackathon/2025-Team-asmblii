@@ -29,6 +29,11 @@ services:
         target: \\.\pipe\docker_engine\
         type: npipe
       - ./docker/data/traefik:C:/etc/traefik
+    networks:
+      default:
+        aliases:
+        - headnextjss.2025-team-asmblii.localhost
+        - xmcloudcm.localhost
 
   aspire:
     image: ghcr.io/pbering/dotnet-aspire-dashboard-windows:9.0.0-ltsc2022

@@ -1,19 +1,7 @@
 services:
   headnextjs:
     build:
-      context: .
-      args:
-        SITECORE_EDGE_URL: ${SITECORE_EDGE_URL:-}
-        SITECORE_EDGE_CONTEXT: ${SITECORE_EDGE_CONTEXT:-}
-        SITECORE_API_KEY: ${SITECORE_API_KEY:-}
-        SITECORE_API_HOST: ${SITECORE_API_HOST:-}
-        PUBLIC_URL: https://headnextjss.2025-team-asmblii.localhost
-        OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: ${OTLP_COLLECTOR}/v1/traces
-        OTEL_EXPORTER_OTLP_METRICS_ENDPOINT: ${OTLP_COLLECTOR}/v1/metrics
-        NEXT_TELEMETRY_DISABLED: 1
-        SITECORE_SITE_NAME: headnextjs
-        OTEL_SERVICE_NAME: nextjs-headnextjs
-        NEXT_PUBLIC_OTEL_SERVICE_NAME: nextjs-headnextjs
+      context: ./docker
     environment:
       SITECORE_EDGE_URL: ${SITECORE_EDGE_URL:-}
       SITECORE_EDGE_CONTEXT: ${SITECORE_EDGE_CONTEXT:-}
@@ -26,14 +14,14 @@ services:
       SITECORE_SITE_NAME: headnextjs
       OTEL_SERVICE_NAME: nextjs-headnextjs
       NEXT_PUBLIC_OTEL_SERVICE_NAME: nextjs-headnextjs
+      REVALIDATION_SECRET: very-secret
+      
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
     volumes:
       - .:c:\repo
     working_dir: c:\repo
-    #entrypoint: cmd /c "echo ""## Installing..."" && npm ci && echo ""## Starting..."" && npm start"
-    entrypoint: cmd /c "echo ""## Starting..."" && npm start"
     labels:
       traefik.enable: true
       traefik.http.routers.headnextjs.entrypoints: websecure
       traefik.http.routers.headnextjs.rule: Host(`headnextjss.2025-team-asmblii.localhost`)
       traefik.http.routers.headnextjs.tls: true
-      traefik.http.services.headnextjs.loadbalancer.server.port: 5000
