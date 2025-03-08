@@ -7,8 +7,8 @@
 TODO's:
 
 1. udfyld root README.md
-1. root init/up script til demo/dommer skal kører?
-2. ...
+2. root init/up script til demo/dommer skal kører?
+3. ...
 999. lav video...
 
 -->
