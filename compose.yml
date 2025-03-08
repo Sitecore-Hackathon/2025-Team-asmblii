@@ -29,7 +29,7 @@ services:
       - ./docker/data/traefik:C:/etc/traefik
 
   aspire:
-    image: ghcr.io/pbering/dotnet-aspire-dashboard-windows:8.1.0-ltsc2022
+    image: ghcr.io/pbering/dotnet-aspire-dashboard-windows:9.0.0-ltsc2022
     environment:
       DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS: true
     labels:
