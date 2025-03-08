@@ -1,6 +1,19 @@
-@api_HostAddress = http://localhost:5233
+@api_HostAddress = https://localhost:64675
 
 GET {{api_HostAddress}}/randomdadjoke/
 Accept: application/json
+
+###
+
+GET {{api_HostAddress}}/randomdadjoke
+
+###
+
+GET {{api_HostAddress}}/solrping
+
+###
+
+
+POST {{api_HostAddress}}/solrsearch
 
 ###
