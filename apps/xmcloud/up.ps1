@@ -32,7 +32,7 @@ do
         }
     }
     Write-Host "." -ForegroundColor Green -NoNewline
-} while ($status.status -ne "enabled" -and $startTime.AddSeconds(300) -gt (Get-Date))
+} while ($status.status -ne "enabled" -and $startTime.AddMinutes(8) -gt (Get-Date))
 
 Write-Host "`n" -NoNewline
 
