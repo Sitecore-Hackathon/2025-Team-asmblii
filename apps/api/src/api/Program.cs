@@ -1,11 +1,16 @@
 using api.Models;
 using api.Repositories;
 using api.Services;
+using CommonServiceLocator;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Extensions.DependencyInjection;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using SolrNet;
+using SolrNet.Impl;
+using SolrNet.Schema;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,6 +74,14 @@ builder.Services.AddHttpClient<IDadJokeService, DadJokeService>(client =>
     client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
 });
 
+builder.Services.AddScoped<ISolrStatusResponseParser, SolrStatusResponseParser>();
+builder.Services.AddScoped<ISolrCoreAdmin, SolrCoreAdmin>();
+
+/*var headerParser = ServiceLocator.Current.GetInstance<ISolrHeaderResponseParser>();
+var statusParser = ServiceLocator.Current.GetInstance<ISolrStatusResponseParser>();
+builder.Services.AddScoped<ISolrCoreAdmin, SolrCoreAdmin>(solrCoreAdmin => new SolrCoreAdmin(new SolrConnection(solrUri), headerParser, statusParser));
+*/
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -111,6 +124,23 @@ app.MapGet("/randomdadjoke", async (IDadJokeService dadJokeService) =>
     var results = await dadJokeService.GetRandomJokeAsync();
     return results;
 }).WithName("RandomDadJoke");
+
+app.MapGet("solrcorestatus", async (ISolrCoreAdmin solrCoreAdmin) =>
+{
+    IList<CoreResult> coreStatus = solrCoreAdmin.Status();    
+    return true;
+}).WithName("SolrCoreStatus");
+
+app.MapPost("initSolr", (ISolrCoreAdmin solrCoreAdmin) =>
+{
+    var results = solrCoreAdmin.Create("asmblii", "asmblii");
+    return results;
+}).WithName("initSolr");
+
+
+
+
+
 
 // ready to run
 app.Run();
