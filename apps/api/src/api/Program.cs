@@ -138,6 +138,14 @@ app.MapGet("/randomdadjoke", async (IDadJokeService dadJokeService) =>
     return results;
 }).WithName("RandomDadJoke");
 
+/******** Slow methods.... *******/
+app.MapGet("/slowhi", async () => 
+{
+    var value = new Random().Next(400, 20000);
+    await Task.Delay(value);
+    return new { message = "Hi" };
+}).WithName("SlowHi");
+
 
 // ready to run
 app.Run();
