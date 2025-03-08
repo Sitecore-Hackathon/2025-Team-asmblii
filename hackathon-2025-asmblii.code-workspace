@@ -5,6 +5,10 @@
             "path": "apps/headnextjs"
         },
         {
+            "name": "Api",
+            "path": "apps/api"
+        },
+        {
             "name": "XmCloudLocal",
             "path": "apps/xmcloud"
         },
