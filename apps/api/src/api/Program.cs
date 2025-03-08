@@ -110,17 +110,18 @@ app.MapGet("/solrping", async (ISolrRepository solrRepository) =>
     return results;
 }).WithName("SolrPing");
 
-app.MapGet("solrcorestatus", async (ISolrCoreAdmin solrCoreAdmin) =>
+app.MapGet("solrcorestatus", (ISolrCoreAdmin solrCoreAdmin) =>
 {
     IList<CoreResult> coreStatus = solrCoreAdmin.Status();
+
     return true;
 }).WithName("SolrCoreStatus");
 
 app.MapPost("solrpopulateindex/{count}", async (ISolrService solrService, int count) =>
 {
-
-    var results = solrService.PopulateIndex(count);
-    return true;
+    var results = await solrService.PopulateIndex(count);
+    
+    return results;
 }).WithName("SolrPopulateIndex");
 
 

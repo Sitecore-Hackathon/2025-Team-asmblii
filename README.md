@@ -15,7 +15,39 @@
 
 ## Description
 
-⟹ Write a clear description of your hackathon entry.
+### Effective observability of composable DXP's using OpenTelemetry
+
+OpenTelemetry (OTel) is an open-source, [CNCF backed](https://www.cncf.io/projects/opentelemetry/), cross-platform, vendor-neutral framework and specification for making systems observable. It achieves this by instrumenting code to emit traces, metrics, and logs in a standardized format, which can then be sent to an observability backend.
+
+In this case the [ASP.NET Aspire Dashboard](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/dashboard/standalone?tabs=bash) as used as it is a simple OTel collector and UI that is easy to run locally. Alternatives could be SigNoz, New Relic, DataDog, Azure App Insights etc. which all supports ingesting OTel data.
+
+The demo architecture:
+
+````text
+
+client -> traefik - next.js -> asp.net api -> solr
+
+````
+
+
+What parts of the stack do we instrument in this submission?
+
+1. Traefik
+    - Traces
+    - Metrics
+    - Logs
+1. Next.js/JSS
+    - Traces
+    - Metrics
+1. ASP.NET Core API
+    - Traces
+    - Metrics
+    - Logs
+1. Solr
+    - Traces
+    - Metrics
+    - Logs
+
 
 ## Video link
 
@@ -38,10 +70,11 @@ No special or manual configuration needed! 🚀🚀🚀
 
 ## Usage instructions
 
-1. Browse https://headnextjss.2025-team-asmblii.localhost/
-
-⟹ Provide documentation about your module, how do the users use your module, where are things located, what do the icons mean, are there any secret shortcuts etc.
+1. Browse <https://headnextjss.2025-team-asmblii.localhost/>, refresh a few times...
+1. Open <https://dashboard.2025-team-asmblii.localhost> explore all the glorious traces, metrics and structured logs 🦄🎉!
+1. TODO: browse url that calls api-app endpoint that fails with 500, tell how to find in dashboard
+1. TODO: browse url that calls api-app endpoint that is VERY slow, tell how to find in dashboard
 
 ## Comments
 
-⟹ TODO
+TODO
