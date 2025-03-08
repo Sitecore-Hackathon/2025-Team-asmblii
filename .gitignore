@@ -354,3 +354,4 @@ src/coreclr/System.Private.CoreLib/common
 .dotnet-daily/
 run-stress-*
 test:.cs
+/apps/api/src/api/Properties/launchSettings.json
