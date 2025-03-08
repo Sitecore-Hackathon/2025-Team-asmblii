@@ -7,12 +7,13 @@ namespace api.Repositories.Solr;
 public interface ISolrRepository
 {
     Task<ICollection<SolrSearchResult>> Search(string query, int start, int rows);
+    Task<ResponseHeader> Ping();
 }
 
-public class SolrService : ISolrRepository
+public class SolrRepository : ISolrRepository
 {
     private readonly ISolrOperations<SolrSearchResult> _solr;
-    public SolrService(ISolrOperations<SolrSearchResult> solr)
+    public SolrRepository(ISolrOperations<SolrSearchResult> solr)
     {
         _solr = solr;
     }
@@ -23,6 +24,12 @@ public class SolrService : ISolrRepository
             StartOrCursor = new StartOrCursor.Start(start),
             Rows = rows
         });
+        return results;
+    }
+
+    public async Task<ResponseHeader> Ping()
+    {
+        var results = await _solr.PingAsync();
         return results;
     }
 }
