@@ -1,0 +1,12 @@
+services:
+  headnextjs:
+    build:
+      context: ./apps/headnextjs/docker
+    environment:
+      SITECORE_EDGE_URL: ${SITECORE_EDGE_URL}
+      SITECORE_EDGE_CONTEXT: ${SITECORE_EDGE_CONTEXT}
+    volumes:
+      - ./apps/headnextjs:/repo
+    working_dir: /repo
+    entrypoint: npm start
+
