@@ -65,11 +65,4 @@ public class SolrSearchResultEntry
     /// </summary>
     [SolrField("attr_score")]
     public float Score { get; set; }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="SolrSearchResultEntry"/> class.
-    /// </summary>
-    public SolrSearchResultEntry()
-    {
-    }
 }

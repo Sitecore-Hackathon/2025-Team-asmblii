@@ -74,13 +74,11 @@ builder.Services.AddHttpClient<IDadJokeService, DadJokeService>(client =>
     client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
 });
 
+//To enable Solr Core Admin features
 builder.Services.AddScoped<ISolrStatusResponseParser, SolrStatusResponseParser>();
 builder.Services.AddScoped<ISolrCoreAdmin, SolrCoreAdmin>();
 
-/*var headerParser = ServiceLocator.Current.GetInstance<ISolrHeaderResponseParser>();
-var statusParser = ServiceLocator.Current.GetInstance<ISolrStatusResponseParser>();
-builder.Services.AddScoped<ISolrCoreAdmin, SolrCoreAdmin>(solrCoreAdmin => new SolrCoreAdmin(new SolrConnection(solrUri), headerParser, statusParser));
-*/
+builder.Services.AddScoped<ISolrService, SolrService>();
 
 var app = builder.Build();
 
@@ -112,6 +110,20 @@ app.MapGet("/solrping", async (ISolrRepository solrRepository) =>
     return results;
 }).WithName("SolrPing");
 
+app.MapGet("solrcorestatus", async (ISolrCoreAdmin solrCoreAdmin) =>
+{
+    IList<CoreResult> coreStatus = solrCoreAdmin.Status();
+    return true;
+}).WithName("SolrCoreStatus");
+
+app.MapPost("solrpopulateindex/{count}", async (ISolrService solrService, int count) =>
+{
+
+    var results = solrService.PopulateIndex(count);
+    return true;
+}).WithName("SolrPopulateIndex");
+
+
 /******** IHazDadJokes methods ********/
 app.MapGet("/dadjoke/{id}", async (IDadJokeService dadJokeService, string id) =>
 {
@@ -124,17 +136,6 @@ app.MapGet("/randomdadjoke", async (IDadJokeService dadJokeService) =>
     var results = await dadJokeService.GetRandomJokeAsync();
     return results;
 }).WithName("RandomDadJoke");
-
-app.MapGet("solrcorestatus", async (ISolrCoreAdmin solrCoreAdmin) =>
-{
-    IList<CoreResult> coreStatus = solrCoreAdmin.Status();    
-    return true;
-}).WithName("SolrCoreStatus");
-
-
-
-
-
 
 
 // ready to run

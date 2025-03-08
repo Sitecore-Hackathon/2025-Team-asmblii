@@ -1,68 +1,60 @@
 using api.Models;
 using SolrNet;
-using SolrNet.Commands.Parameters;
 
 namespace api.Repositories;
 
 /// <summary>
 /// Interface for the Solr repository. Supporting dependency injection.
 /// </summary>
-public interface ISolrRepository
+public interface ISolrService
 {
-    Task<ICollection<SolrSearchResultEntry>>Search(string query, int start, int rows);
-    Task<ResponseHeader> Ping();
+    Task<ResponseHeader> PopulateIndex(int numberofDocs);
+
 }
 
-/// <summary>
-/// Repository for Solr search operations.
-/// </summary>
-public class SolrRepository : ISolrRepository
+public class SolrService : ISolrService
 {
     private readonly ISolrOperations<SolrSearchResultEntry> _solr;
+    private static Random random = new Random();
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="SolrRepository"/> class.
-    /// </summary>
-    /// <param name="solr">
-    /// Solr operations to use.
-    /// </param>
-    public SolrRepository(ISolrOperations<SolrSearchResultEntry> solr)
+    public SolrService(ISolrOperations<SolrSearchResultEntry> solr)
     {
         _solr = solr;
     }
 
-    /// <summary>
-    /// Searches the Solr server for the specified query.
-    /// </summary>
-    /// <param name="query">
-    /// query to search for.
-    /// </param>
-    /// <param name="start">
-    /// start index of the search results.
-    /// </param>
-    /// <param name="rows">
-    /// rows to return.
-    /// </param>
-    /// <returns></returns>
-    public async Task<ICollection<SolrSearchResultEntry>> Search(string query, int start, int rows)
+    public async Task<ResponseHeader> PopulateIndex(int numberOfDocs)
     {
-        var results = await _solr.QueryAsync(new SolrQuery(query), options: new QueryOptions
+        for(int count = 0; count < numberOfDocs; count++)
         {
-            StartOrCursor = new StartOrCursor.Start(start),
-            Rows = rows
-        });
-        return results;
+            var doc = new SolrSearchResultEntry
+            {
+                Id = Guid.NewGuid().ToString(),
+                Title = "Title " + RandomString(random.Next(10, 50)),
+                Content = "Content " + RandomString(random.Next(50,2000)),
+                Url = "https://asmblii.com",
+                Author = "Author " + RandomString(random.Next(5, 15)),
+                Date = DateTime.Now,
+                Tags = new List<string> { "tag1", "tag2" },
+                Categories = new List<string> { "category1", "category2" }
+            };
+            await _solr.AddAsync(doc);
+        }
+        await _solr.CommitAsync();
+        await _solr.OptimizeAsync();
+        return new ResponseHeader
+        {
+            Status = 200,
+            QTime = 0,
+            Params = new Dictionary<string, string> { 
+                { "number_of_docs added", numberOfDocs.ToString() } 
+            }
+        };  
     }
 
-    /// <summary>
-    /// Pings the Solr server to check if it is up and running.
-    /// </summary>
-    /// <returns>
-    /// ResponseHeader object with the status of the ping. Including properties like status, QTime, and params.
-    /// </returns>
-    public async Task<ResponseHeader> Ping()
+    public static string RandomString(int length)
     {
-        var results = await _solr.PingAsync();
-        return results;
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ?!-";
+        return new string(Enumerable.Repeat(chars, length)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
     }
 }
