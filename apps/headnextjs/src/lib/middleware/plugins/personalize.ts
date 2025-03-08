@@ -56,7 +56,19 @@ class PersonalizePlugin implements MiddlewarePlugin {
   }
 
   async exec(req: NextRequest, res?: NextResponse): Promise<NextResponse> {
-    return this.personalizeMiddleware.getHandler()(req,res);
+    let result: NextResponse = NextResponse.next();
+    await trace
+      .getTracer('nextjs-example')
+      .startActiveSpan('personalization-middleware', async (span) => {
+        try {
+          const handler = this.personalizeMiddleware.getHandler();
+          result = await handler(req, res);
+          return result;
+        } finally {
+          span.end()
+        }
+      });
+    return result;
   }
 }
 
