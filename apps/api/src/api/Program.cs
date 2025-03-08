@@ -1,16 +1,12 @@
 using api.Models;
 using api.Repositories;
 using api.Services;
-using CommonServiceLocator;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.Extensions.DependencyInjection;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using SolrNet;
 using SolrNet.Impl;
-using SolrNet.Schema;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -61,6 +57,7 @@ builder.Services.AddOpenApi();
 
 // add API services
 var solrUri = builder.Configuration["Solr:Uri"];
+var apiUri = builder.Configuration["Uri"];
 
 builder.Services.AddSolrNet<SolrSearchResultEntry>(solrUri); 
 builder.Services.AddScoped<ISolrRepository, SolrRepository>();
@@ -145,6 +142,42 @@ app.MapGet("/slowhi", async () =>
     return new { message = "Hi" };
 }).WithName("SlowHi");
 
+app.MapGet("/randomrequests", async (HttpClient client) =>
+{
+    var baseAddress = builder.Configuration["Uri"] ?? throw new Exception("Baseaddress for the api is not set!");
+    client.BaseAddress = new Uri(apiUri);
+    var random = new Random();
+    var numberOfRequests = random.Next(1, 20); // Random number of requests between 1 and 10
+    var jokeIds = new List<string> { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+    var endpoints = new List<string>
+    {
+        "/test",
+        $"/solrsearch?query=test&start=0&rows={random.Next(2,20)}",
+        "/solrping",
+        "/solrcorestatus",
+        $"/solrpopulateindex/{random.Next(2,20)}",
+        $"/dadjoke/{jokeIds[random.Next(0,9)]}",
+        "/randomdadjoke",
+        "/slowhi"
+    };
+
+    var tasks = new List<Task<HttpResponseMessage>>();
+
+    for (int i = 0; i < numberOfRequests; i++)
+    {
+        var endpoint = endpoints[random.Next(endpoints.Count)];
+        tasks.Add(client.GetAsync(endpoint));
+    }
+
+    var responses = await Task.WhenAll(tasks);
+
+    var results = new List<string>();
+    foreach (var response in responses)
+    {
+        results.Add(await response.Content.ReadAsStringAsync());
+    }
+    return results;
+}).WithName("RandomRequests");
 
 // ready to run
 app.Run();
