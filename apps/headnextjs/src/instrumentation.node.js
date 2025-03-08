@@ -1,39 +1,35 @@
-// import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
-// import { Resource } from '@opentelemetry/resources'
-import { NodeSDK } from '@opentelemetry/sdk-node'
-// import { SimpleSpanProcessor } from '@opentelemetry/sdk-trace-node'
-// import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions'
-// import { OTLPLogExporter } from "@opentelemetry/exporter-logs-otlp-http";
-// import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-node';
-// import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
-// import {
-//   PeriodicExportingMetricReader,
-//   ConsoleMetricExporter,
-// } from '@opentelemetry/sdk-metrics';
-// import { BatchLogRecordProcessor, SimpleLogRecordProcessor } from "@opentelemetry/sdk-logs";
+const { NodeSDK } = require('@opentelemetry/sdk-node');
+const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
+const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-grpc');
+const { OTLPMetricExporter } = require('@opentelemetry/exporter-metrics-otlp-grpc');
+const { OTLPLogExporter } = require("@opentelemetry/exporter-logs-otlp-grpc");
+const { PeriodicExportingMetricReader } = require('@opentelemetry/sdk-metrics');
+const { BatchLogRecordProcessor } = require("@opentelemetry/sdk-logs");
+const { containerDetector } = require('@opentelemetry/resource-detector-container');
+const { envDetector, hostDetector, osDetector, processDetector } = require('@opentelemetry/resources');
 
-import config from '@jssconfig';
+const sdk = new NodeSDK({
+  instrumentations: [
+    getNodeAutoInstrumentations({
+      '@opentelemetry/instrumentation-fs': { enabled: false },
+      '@opentelemetry/instrumentation-fastify': { enabled: false },
+      '@opentelemetry/instrumentation-winston': { enabled: false },
+    })
+  ],
+  traceExporter: new OTLPTraceExporter(),
+  metricReader: new PeriodicExportingMetricReader({
+    exporter: new OTLPMetricExporter(),
+  }),
+  logRecordProcessors: [
+    new BatchLogRecordProcessor(new OTLPLogExporter())
+  ],
+  resourceDetectors: [
+    containerDetector,
+    envDetector,
+    hostDetector,
+    osDetector,
+    processDetector,
+  ],
+});
 
-const serviceName = 'nextjs-' + config.sitecoreSiteName;
-// console.log(`Starting instrumentation with ${serviceName} to ${process.env.OTEL_EXPORTER_OTLP_TRACES_ENDPOINT}`);
-
-
-  // const sdk = new NodeSDK({
-  //   mergeResourceWithDefaults: false,
-  //   //traceExporter: new ConsoleSpanExporter(),
-  //   // metricReader: new PeriodicExportingMetricReader({
-  //   //   exporter: new ConsoleMetricExporter(),
-  //   // }),
-  //   // logRecordProcessors: [new  SimpleLogRecordProcessor(new OTLPLogExporter())],
-  //   //instrumentations: [getNodeAutoInstrumentations()],
-  // });
-
-  // sdk.start();
-
-  // const sdk = new NodeSDK({
-  //   resource: new Resource({
-  //     [ATTR_SERVICE_NAME]: serviceName,
-  //   }),
-  //   spanProcessor: new SimpleSpanProcessor(new OTLPTraceExporter()),
-  // })
-  // sdk.start();
+sdk.start();
