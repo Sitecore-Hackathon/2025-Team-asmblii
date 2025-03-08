@@ -27,7 +27,7 @@ app.MapGet("/solrping", async (ISolrRepository solrRepository, string query, int
 {
     var results = await solrRepository.Ping();
     return results;
-}).WithName("solrping");
+}).WithName("SolrPing");
 
 app.Run();
 
