@@ -1,0 +1,18 @@
+services:
+  headnextjs:
+    build:
+      context: ./docker
+    environment:
+      SITECORE_EDGE_URL: ${SITECORE_EDGE_URL:-}
+      SITECORE_EDGE_CONTEXT: ${SITECORE_EDGE_CONTEXT:-}
+      SITECORE_API_KEY: ${SITECORE_API_KEY:-}
+      SITECORE_API_HOST: ${SITECORE_API_HOST:-}
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: ${OTLP_COLLECTOR}/v1/traces
+      OTEL_EXPORTER_OTLP_METRICS_ENDPOINT: ${OTLP_COLLECTOR}/v1/metrics
+      NEXT_TELEMETRY_DISABLED: 1
+    volumes:
+      - .:c:\repo
+    working_dir: c:\repo
+    entrypoint: cmd /c "npm ci && npm start"
+    ports:
+      - 5000:5000

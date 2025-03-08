@@ -1,6 +1,8 @@
 include:
   - path:
       - ./apps/xmcloud/compose.yml
+  - path:
+      - ./apps/headnextjs/compose.yml
 
 services:
   traefik:
