@@ -10,6 +10,10 @@ const config = {
     locales: ['en'],
     graphQLEndpoint: process.env.GRAPH_QL_ENDPOINT ?? '',
   };
+
+  if(config.sitecoreApiHost && config.graphQLEndpointPath && !config.graphQLEndpoint) {
+    config.graphQLEndpoint = config.sitecoreApiHost + config.graphQLEndpointPath;
+  }
   
   module.exports = config;
   
