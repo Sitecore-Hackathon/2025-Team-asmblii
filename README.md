@@ -25,7 +25,7 @@
 
 - Windows 11 24H2 or later
 - Docker Desktop >= **v4.39.0**
-- Valid Sitecore license at `C:\licenses\license.xml`
+- Valid Sitecore license at `C:\license\license.xml`
 
 ## Installation instructions
 
