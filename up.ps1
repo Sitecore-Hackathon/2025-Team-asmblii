@@ -25,6 +25,9 @@ Write-Host "Starting stack..." -ForegroundColor Green
 
 docker compose up -d
 
+# start local XM Cloud instance
+Push-Location .\apps\xmcloud
+
 try
 {
   .\up.ps1 -RebuildIndexes:$RebuildIndexes
