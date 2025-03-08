@@ -20,5 +20,8 @@ RUN md %APPDATA%\npm
 ENV PATH=C:\Windows\system32;C:\Windows;c:\nodejs;%APPDATA%\npm 
 COPY --from=download /out/ /
 
-CMD [ "node.exe" ]
+COPY *.cmd /
 
+ENV PORT=5000
+EXPOSE 5000
+ENTRYPOINT ["cmd", "/c", "c:\\run.cmd"]

@@ -17,7 +17,7 @@ const Bootstrap = (props: SitecorePageProps): JSX.Element | null => {
       console.debug('Browser Events SDK is not initialized in development environment');
     else if (pageState !== LayoutServicePageState.Normal)
       console.debug('Browser Events SDK is not initialized in edit and preview modes');
-    else {
+    else if(config.sitecoreEdgeContextId) {
       CloudSDK({
         sitecoreEdgeUrl: config.sitecoreEdgeUrl,
         sitecoreEdgeContextId: config.sitecoreEdgeContextId,

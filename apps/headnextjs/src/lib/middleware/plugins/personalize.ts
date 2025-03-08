@@ -57,18 +57,22 @@ class PersonalizePlugin implements MiddlewarePlugin {
 
   async exec(req: NextRequest, res?: NextResponse): Promise<NextResponse> {
     let result: NextResponse = NextResponse.next();
-    await trace
-      .getTracer('nextjs-example')
-      .startActiveSpan('personalization-middleware', async (span) => {
-        try {
-          const handler = this.personalizeMiddleware.getHandler();
-          result = await handler(req, res);
-          return result;
-        } finally {
-          span.end()
-        }
-      });
-    return result;
+    if (config.sitecoreEdgeContextId) {
+      await trace
+        .getTracer('nextjs-example')
+        .startActiveSpan('personalization-middleware', async (span) => {
+          try {
+            const handler = this.personalizeMiddleware.getHandler();
+            result = await handler(req, res);
+            return result;
+          } finally {
+            span.end()
+          }
+        });
+      return result;
+    } else {
+      return NextResponse.next();
+    }
   }
 }
 

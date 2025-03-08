@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from 'next';
 import NotFound from 'src/NotFound';
 import Layout from 'src/Layout';
 import {
@@ -45,7 +45,7 @@ const SitecorePage = ({
 
 // This function gets called at build and export time to determine
 // pages for SSG ("paths", as tokenized array).
-export const getStaticPaths: GetStaticPaths = async (context) => {
+export const getStaticPaths: GetStaticPaths = async (context: GetStaticPathsContext) => {
   // Fallback, along with revalidate in getStaticProps (below),
   // enables Incremental Static Regeneration. This allows us to
   // leave certain (or all) paths empty if desired and static pages
@@ -89,7 +89,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 5 seconds
-    revalidate: 5, // In seconds
+    revalidate: 60, // In seconds
     notFound: props.notFound, // Returns custom 404 page with a status code of 404 when true
   };
 };
