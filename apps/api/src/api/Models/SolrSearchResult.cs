@@ -4,7 +4,7 @@ namespace  api.Models;
 
 public class SolrSearchResultEntry
 {
-    //Selected index fields to expose - with empty object values as fallback
+    //Selected index fields to expose - with empty object values as fallback - attr_ is used as prefix to hit a dynamic field in Solr schema definition
 
     /// <summary>
     /// Gets or sets the ID of a search result entry.
@@ -15,55 +15,55 @@ public class SolrSearchResultEntry
     /// <summary>
     /// Gets or sets the title of a search result entry.
     /// </summary>
-    [SolrField("title")]
+    [SolrField("attr_title")]
     public string Title { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the content of a search result entry.
     /// </summary>
-    [SolrField("content")]
+    [SolrField("attr_content")]
     public string Content { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the URL of a search result entry.
     /// </summary>
-    [SolrField("url")]
+    [SolrField("attr_url")]
     public string Url { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the author of a search result entry.
     /// </summary>
-    [SolrField("author")]
+    [SolrField("attr_author")]
     public string Author { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the date of a search result entry.
     /// </summary>
-    [SolrField("date")]
+    [SolrField("attr_date")]
     public DateTime Date { get; set; }
 
     /// <summary>
     /// Gets or sets the tags of a search result entry.
     /// </summary>
-    [SolrField("tags")]
+    [SolrField("attr_tags")]
     public ICollection<string> Tags { get; set; } = new List<string>();
 
     /// <summary>
     /// Gets or sets the categories of a search result entry.
     /// </summary>
-    [SolrField("categories")]
+    [SolrField("attr_categories")]
     public ICollection<string> Categories { get; set; } = new List<string>();
 
     /// <summary>
     /// Gets or sets the type of a search result entry.
     /// </summary>
-    [SolrField("type")]
+    [SolrField("attr_type")]
     public string Type { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the score of a search result entry.
     /// </summary>
-    [SolrField("score")]
+    [SolrField("attr_score")]
     public float Score { get; set; }
 
     /// <summary>
