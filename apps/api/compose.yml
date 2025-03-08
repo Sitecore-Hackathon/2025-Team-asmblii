@@ -8,7 +8,6 @@ services:
     volumes:
       - .\docker\data\solr:C:\data
     environment:
-      SOLR_MODE: solrcloud
       SOLR_LOG_LEVEL: WARN
       SOLR_HEAP: 2000M
       SOLR_JAVA_MEM: -Xms2000M -Xmx2000M

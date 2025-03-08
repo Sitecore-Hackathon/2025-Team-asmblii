@@ -1,2 +1,7 @@
 *
 !.gitignore
+!asmblii/
+!asmblii/conf/
+!asmblii/conf/*
+!asmblii/conf/lang/*
+!asmblii/core.properties

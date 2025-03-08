@@ -17,8 +17,9 @@ TODO's:
 Run once:
 
 1. `.\init.ps1`
+1. `.\up.ps1 -RebuildIndexes`
 
-Else:
+After that you can work normally:
 
 1. `.\up.ps1` (or `docker compose up -d --build` and `Push-Location .\apps\xmcloud; dotnet sitecore ser push; Pop-Location`)
 1. Example, rebuild and restart single app: `docker compose up -d api-app --build`

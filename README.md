@@ -29,16 +29,19 @@
 
 ## Installation instructions
 
-⟹ Write a short clear step-wise instruction on how to install your module.
+1. `.\init.ps1`
+1. `.\up.ps1 -RebuildIndexes`
 
 ### Configuration
 
-⟹ If there are any custom configuration that has to be set manually then remember to add all details here.
+No special or manual configuration needed! 🚀🚀🚀
 
 ## Usage instructions
+
+1. Browse https://headnextjss.2025-team-asmblii.localhost/
 
 ⟹ Provide documentation about your module, how do the users use your module, where are things located, what do the icons mean, are there any secret shortcuts etc.
 
 ## Comments
 
-If you'd like to make additional comments that is important for your module entry.
+⟹ TODO

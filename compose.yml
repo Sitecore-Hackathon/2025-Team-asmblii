@@ -49,6 +49,9 @@ services:
         aliases:
         - headnextjss.2025-team-asmblii.localhost
         - xmcloudcm.localhost
+    depends_on:
+      aspire:
+        condition: service_started
 
   aspire:
     image: ghcr.io/pbering/dotnet-aspire-dashboard-windows:9.0.0-ltsc2022

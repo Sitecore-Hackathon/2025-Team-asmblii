@@ -89,12 +89,3 @@ Add-HostsEntry "headnextjss.2025-team-asmblii.localhost"
 Add-HostsEntry "dashboard.2025-team-asmblii.localhost"
 
 Write-Host "Done!" -ForegroundColor Green
-
-try
-{
-  .\up.ps1 -RebuildIndexes
-}
-finally
-{
-  Pop-Location
-}
