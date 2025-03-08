@@ -7,7 +7,7 @@ $repoRoot = Resolve-Path "$PSScriptRoot/."
 Write-Host "Preparing your Sitecore Containers environment!" -ForegroundColor Green
 
 # Parse .env values
-$envFileLocation = "$repoRoot/.env"
+$envFileLocation = Join-Path $repoRoot "./apps/xmcloud/.env"
 $envContent = Get-Content $envFileLocation -Encoding UTF8
 $xmCloudHost = $envContent | Where-Object { $_ -imatch "^CM_HOST=.+" } | ForEach-Object { $_.Substring($_.IndexOf("=") + 1) }
 
@@ -64,6 +64,7 @@ try
     Write-Host "Generating Traefik TLS certificate..." -ForegroundColor Green
     & $mkcert -install
     & $mkcert $xmCloudHost
+    & $mkcert "*.2025-team-asmblii.localhost"
 
 }
 catch
@@ -82,5 +83,20 @@ finally
 Write-Host "Adding Windows hosts file entries..." -ForegroundColor Green
 
 Add-HostsEntry $xmCloudHost
+Add-HostsEntry "api-solr.2025-team-asmblii.localhost"
+Add-HostsEntry "api-app.2025-team-asmblii.localhost"
+Add-HostsEntry "headnextjss.2025-team-asmblii.localhost"
 
 Write-Host "Done!" -ForegroundColor Green
+
+# start local XM Cloud instance
+Push-Location (Join-Path $repoRoot "./apps/xmcloud")
+
+try
+{
+  .\up.ps1 -RebuildIndexes
+}
+finally
+{
+  Pop-Location
+}

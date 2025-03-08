@@ -13,44 +13,6 @@ $repoRoot = Resolve-Path "$PSScriptRoot/."
 $envFileLocation = "$repoRoot/.env"
 $envContent = Get-Content $envFileLocation -Encoding UTF8
 $xmCloudHost = $envContent | Where-Object { $_ -imatch "^CM_HOST=.+" } | ForEach-Object { $_.Substring($_.IndexOf("=") + 1) }
-$licenseFolder = $envContent | Where-Object { $_ -imatch "^HOST_LICENSE_FOLDER=.+" } | ForEach-Object { $_.Substring($_.IndexOf("=") + 1) }
-
-# Check license
-$licenseXmlPath = Join-Path $licenseFolder "license.xml"
-
-if (-not (Test-Path $licenseXmlPath))
-{
-    throw "License not found at '$licenseXmlPath'."
-}
-
-$licenseXml = [xml](Get-Content $licenseXmlPath)
-$licenseExpiration = $licenseXml.SelectNodes("//expiration")[0].InnerText
-$licenseExpirationDate = [System.DateTime]::ParseExact($licenseExpiration, "yyyyMMddThhmmss", [System.Globalization.CultureInfo]::InvariantCulture)
-
-if ($licenseExpirationDate -lt (Get-Date))
-{
-    throw "Your license has expired at '$licenseExpirationDate', please update your license file at '$licenseXmlPath'."
-}
-else
-{
-    Write-Host "The license is valid. $(($licenseExpirationDate - (Get-Date)).Days) days left until expiration." -ForegroundColor Green
-}
-
-# Update images
-Write-Host "Keeping all images up to date..." -ForegroundColor Green
-(docker compose config | Select-String "(scr\.sitecore\.com\/.+)|(mcr\.microsoft\.com\/.+)|(traefik\:v.+)").Matches | ForEach-Object { $_.Value } | ForEach-Object { docker image pull $_ }
-
-# Build all services
-Write-Host "Building containers..." -ForegroundColor Green
-docker compose build
-if ($LASTEXITCODE -ne 0)
-{
-    Write-Error "Container build failed, see errors above."
-}
-
-# Start the Sitecore instance
-Write-Host "Starting Sitecore environment..." -ForegroundColor Green
-docker compose up -d
 
 # Wait for Traefik to expose CM route
 Write-Host "Waiting for CM to become available..." -ForegroundColor Green -NoNewline

@@ -1,30 +1,4 @@
 services:
-  traefik:
-    image: ${TRAEFIK_IMAGE}
-    isolation: ${ISOLATION}
-    command:
-      - "--log.level=info"
-      - "--ping"
-      - "--api.insecure=true"
-      - "--providers.docker.endpoint=npipe:////./pipe/docker_engine"
-      - "--providers.docker.exposedByDefault=false"
-      - "--providers.file.directory=C:/etc/traefik/config/dynamic"
-      - "--entryPoints.websecure.address=:443"
-      - "--entryPoints.websecure.forwardedHeaders.insecure"
-    ports:
-      - "443:443"
-      - "8079:8080"
-    healthcheck:
-      test: ["CMD", "traefik", "healthcheck", "--ping"]
-    volumes:
-      - source: \\.\pipe\docker_engine\
-        target: \\.\pipe\docker_engine\
-        type: npipe
-      - ./docker/data/traefik:C:/etc/traefik
-    depends_on:
-      cm:
-        condition: service_healthy
-
   mssql:
     image: ${SITECORE_NONPRODUCTION_DOCKER_REGISTRY}nonproduction/mssql-developer:${SQL_VERSION}
     isolation: ${ISOLATION}
