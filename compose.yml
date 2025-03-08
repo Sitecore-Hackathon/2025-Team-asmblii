@@ -8,7 +8,7 @@ include:
 
 services:
   traefik:
-    image: traefik:v3.3.3-windowsservercore-ltsc2022
+    image: traefik:v3.3.4-windowsservercore-ltsc2022
     isolation: ${ISOLATION}
     command:
       - "--log.level=info"
@@ -19,6 +19,16 @@ services:
       - "--providers.file.directory=C:/etc/traefik/config/dynamic"
       - "--entryPoints.websecure.address=:443"
       - "--entryPoints.websecure.forwardedHeaders.insecure"
+      - "--tracing.otlp=true"
+      - "--tracing.otlp.grpc=true"
+      - "--tracing.otlp.grpc.insecure=true"
+      - "--tracing.otlp.grpc.endpoint=aspire:18889"
+      - "--metrics.otlp=true"
+      - "--metrics.otlp.addRoutersLabels=true"
+      - "--metrics.otlp.addServicesLabels=true"
+      - "--metrics.otlp.grpc=true"
+      - "--metrics.otlp.grpc.insecure=true"
+      - "--metrics.otlp.grpc.endpoint=aspire:18889"
     ports:
       - "443:443"
       - "8079:8080"
