@@ -1,6 +1,6 @@
 ﻿---
-ID: "9eb52407-1985-4dfd-b246-6ca13471f5a4"
-Parent: "cd75608c-1397-41bf-b31a-2def6905f755"
+ID: "a4395714-d897-4d15-97e7-4d2b374d2d80"
+Parent: "33d9a29f-d233-4d98-97b0-edde0b24d39e"
 Template: "6b8aabef-d650-46e0-97d0-c0b04f7f016b"
 Path: "/sitecore/content/team-asmblii/headnextjs/Presentation/Styles/Rich text/Custom bullet points"
 BranchID: "75653e9d-3c5c-45d4-823d-1bb04474400b"
@@ -26,22 +26,22 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20250308T153332Z
+      Value: 20250308T155533Z
     - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
       Hint: __Owner
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "e95f66d1-4504-4660-a5e6-4dd9f0055252"
+      Value: "119c281b-00af-46c9-bc0f-6023c661f563"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250308T153332Z
+      Value: 20250308T155533Z

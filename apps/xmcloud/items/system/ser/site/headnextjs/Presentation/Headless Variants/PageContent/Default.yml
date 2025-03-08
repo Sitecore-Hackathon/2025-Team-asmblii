@@ -1,6 +1,6 @@
 ﻿---
-ID: "9171d232-2520-49e1-a09c-076e2c7f4fcc"
-Parent: "9e998199-422f-49a7-9fe7-48ad80911ee7"
+ID: "b36f2ea1-a193-48f9-94e1-094784bf57d0"
+Parent: "b54bde4e-efa4-4c3d-8ea3-1049259083aa"
 Template: "4d50cdae-c2d9-4de8-b080-8f992bfb1b55"
 Path: "/sitecore/content/team-asmblii/headnextjs/Presentation/Headless Variants/PageContent/Default"
 BranchID: "5abe3762-5a9c-4710-9730-bb302e90fd13"
@@ -15,22 +15,22 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20250308T153334Z
+      Value: 20250308T155535Z
     - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
       Hint: __Owner
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "8a837028-2458-43f8-862a-a9c593b84cf8"
+      Value: "ccd73042-9ec8-4ff4-8825-ef4981d3509c"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250308T153334Z
+      Value: 20250308T155535Z

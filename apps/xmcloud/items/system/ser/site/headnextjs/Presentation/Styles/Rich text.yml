@@ -1,6 +1,6 @@
 ﻿---
-ID: "cd75608c-1397-41bf-b31a-2def6905f755"
-Parent: "5c2ce471-a2f3-48a1-945a-a476da1e4e22"
+ID: "33d9a29f-d233-4d98-97b0-edde0b24d39e"
+Parent: "afb5e540-f436-4853-91fa-005c489aff4e"
 Template: "c6dc7393-15bb-4cd7-b798-ab63e77ebac4"
 Path: "/sitecore/content/team-asmblii/headnextjs/Presentation/Styles/Rich text"
 BranchID: "75653e9d-3c5c-45d4-823d-1bb04474400b"
@@ -18,22 +18,22 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20250308T153332Z
+      Value: 20250308T155533Z
     - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
       Hint: __Owner
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "307b0dc6-8927-48e5-a40d-b46c32e32edd"
+      Value: "d7d8dfab-0162-4667-ae29-7cc34e69e9ea"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\pdb@asmblii.com
+        sitecore\jba@asmblii.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250308T153332Z
+      Value: 20250308T155533Z
