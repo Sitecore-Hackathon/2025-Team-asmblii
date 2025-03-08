@@ -100,26 +100,25 @@ app.MapGet("/test", () =>
 // add Solr endpoint
 app.MapGet("/solrsearch", async (ISolrRepository solrRepository, string query, int start, int rows) =>
 {
-    var results = await solrRepository.Search(query, start, rows);
+    var results = await solrRepository.SearchAsync(query, start, rows);
     return results;
 }).WithName("SolrSearch");
 
-app.MapGet("/solrping", async (ISolrRepository solrRepository) =>
+app.MapGet("/solrping", async (ISolrService solrService) =>
 {
-    var results = await solrRepository.Ping();
+    var results = await solrService.PingAsync();
     return results;
 }).WithName("SolrPing");
 
 app.MapGet("solrcorestatus", (ISolrCoreAdmin solrCoreAdmin) =>
 {
     IList<CoreResult> coreStatus = solrCoreAdmin.Status();
-
-    return true;
+    return coreStatus;
 }).WithName("SolrCoreStatus");
 
 app.MapPost("solrpopulateindex/{count}", async (ISolrService solrService, int count) =>
 {
-    var results = await solrService.PopulateIndex(count);
+    var results = await solrService.PopulateIndexAsync(count);
     
     return results;
 }).WithName("SolrPopulateIndex");
@@ -137,6 +136,14 @@ app.MapGet("/randomdadjoke", async (IDadJokeService dadJokeService) =>
     var results = await dadJokeService.GetRandomJokeAsync();
     return results;
 }).WithName("RandomDadJoke");
+
+/******** Slow methods.... *******/
+app.MapGet("/slowhi", async () => 
+{
+    var value = new Random().Next(400, 20000);
+    await Task.Delay(value);
+    return new { message = "Hi" };
+}).WithName("SlowHi");
 
 
 // ready to run
