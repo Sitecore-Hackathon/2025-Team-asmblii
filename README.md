@@ -19,7 +19,7 @@ All of 'em!
 
 OpenTelemetry (OTel) is an open-source, [CNCF backed](https://www.cncf.io/projects/opentelemetry/), cross-platform, vendor-neutral framework and specification for making systems observable. It achieves this by instrumenting code to emit traces, metrics, and logs in a standardized format, which can then be sent to an observability backend.
 
-In this case the [ASP.NET Aspire Dashboard](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/dashboard/standalone?tabs=bash) as used as it is a simple OTel collector and UI that is easy to run locally. Alternatives could be platforms such as SigNoz, New Relic, DataDog, Azure App Insights etc. which all supports ingesting OTel data.
+Here we use the [ASP.NET Aspire Dashboard](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/dashboard/standalone?tabs=bash) as it is a simple OTel collector and UI that is easy to run locally. Alternatives could be full-fledged platforms such as SigNoz, New Relic, DataDog, Azure App Insights etc. which all supports ingesting OTel data.
 
 TODO: insert image of aspire with a deep trace
 
