@@ -1,0 +1,145 @@
+services:
+  traefik:
+    image: ${TRAEFIK_IMAGE}
+    isolation: ${ISOLATION}
+    command:
+      - "--log.level=info"
+      - "--ping"
+      - "--api.insecure=true"
+      - "--providers.docker.endpoint=npipe:////./pipe/docker_engine"
+      - "--providers.docker.exposedByDefault=false"
+      - "--providers.file.directory=C:/etc/traefik/config/dynamic"
+      - "--entryPoints.websecure.address=:443"
+      - "--entryPoints.websecure.forwardedHeaders.insecure"
+    ports:
+      - "443:443"
+      - "8079:8080"
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck", "--ping"]
+    volumes:
+      - source: \\.\pipe\docker_engine\
+        target: \\.\pipe\docker_engine\
+        type: npipe
+      - ./docker/data/traefik:C:/etc/traefik
+    depends_on:
+      cm:
+        condition: service_healthy
+
+  mssql:
+    image: ${SITECORE_NONPRODUCTION_DOCKER_REGISTRY}nonproduction/mssql-developer:${SQL_VERSION}
+    isolation: ${ISOLATION}
+    environment:
+      SA_PASSWORD: ${SQL_SA_PASSWORD}
+      ACCEPT_EULA: "Y"
+    volumes:
+      - .\docker\data\mssql:C:\data
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: 8GB
+
+  mssql-init:
+    image: ${SITECORE_DOCKER_REGISTRY}sitecore-xmcloud-mssql-init:${SITECORE_VERSION}
+    isolation: ${ISOLATION}
+    environment:
+      SQL_SERVER: ${SQL_SERVER}
+      SQL_ADMIN_LOGIN: ${SQL_SA_LOGIN}
+      SQL_ADMIN_PASSWORD: ${SQL_SA_PASSWORD}
+      SQL_DATABASE_PREFIX: ${DATA_PREFIX}
+      SITECORE_ADMIN_PASSWORD: ${SITECORE_ADMIN_PASSWORD}
+      POST_DEPLOYMENT_WAIT_PERIOD: 300
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "powershell",
+          "-command",
+          "if ([System.Environment]::GetEnvironmentVariable('DatabasesDeploymentStatus', 'Machine') -eq 'Complete') { exit 0 } else { exit 1 }",
+        ]
+      start_period: 300s
+      interval: 5s
+    depends_on:
+      mssql:
+        condition: service_healthy
+
+  solr:
+    image: ${SITECORE_NONPRODUCTION_DOCKER_REGISTRY}nonproduction/solr:${SOLR_VERSION}
+    isolation: ${ISOLATION}
+    volumes:
+      - .\docker\data\solr:C:\data
+    environment:
+      SOLR_MODE: solrcloud
+      SOLR_LOG_LEVEL: WARN
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "powershell",
+          "-command",
+          "try { $$statusCode = (iwr http://solr:8983/solr/admin/cores?action=STATUS -UseBasicParsing).StatusCode; if ($$statusCode -eq 200) { exit 0 } else { exit 1} } catch { exit 1 }",
+        ]
+
+  solr-init:
+    image: ${SITECORE_DOCKER_REGISTRY}sitecore-xmcloud-solr-init:${SITECORE_VERSION}
+    isolation: ${ISOLATION}
+    environment:
+      SITECORE_SOLR_CONNECTION_STRING: http://solr:8983/solr
+      SOLR_CORE_PREFIX_NAME: ${DATA_PREFIX}
+    depends_on:
+      solr:
+        condition: service_healthy
+
+  cm:
+    image: ${COMPOSE_PROJECT_NAME}-xmcloud-cm:${VERSION:-latest}
+    isolation: ${ISOLATION}
+    build:
+      context: ./docker/build/cm
+      args:
+        PARENT_IMAGE: ${SITECORE_DOCKER_REGISTRY}sitecore-xmcloud-cm:${SITECORE_VERSION}
+        TOOLS_IMAGE: ${TOOLS_IMAGE}:${SITECORE_VERSION}
+    volumes:
+      - .\docker\data\cm\logs:C:\inetpub\wwwroot\App_Data\logs
+      - ${HOST_LICENSE_FOLDER}:C:\license
+    entrypoint: powershell -Command "& C:/tools/entrypoints/iis/XmCloudDevelopment.ps1"
+    environment:
+      host: ${CM_HOST}
+      Sitecore_AppSettings_instanceNameMode:define: default
+      Sitecore_ConnectionStrings_Core: Data Source=${SQL_SERVER};Initial Catalog=${DATA_PREFIX}.Core;User ID=${SQL_SA_LOGIN};Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Security: Data Source=${SQL_SERVER};Initial Catalog=${DATA_PREFIX}.Core;User ID=${SQL_SA_LOGIN};Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Master: Data Source=${SQL_SERVER};Initial Catalog=${DATA_PREFIX}.Master;User ID=${SQL_SA_LOGIN};Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Web: Data Source=${SQL_SERVER};Initial Catalog=${DATA_PREFIX}.Web;User ID=${SQL_SA_LOGIN};Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Solr.Search: http://solr:8983/solr;solrCloud=true
+      Sitecore_AppSettings_Telerik.AsyncUpload.ConfigurationEncryptionKey: ${TELERIK_ENCRYPTION_KEY}
+      Sitecore_AppSettings_Telerik.Upload.ConfigurationHashKey: ${TELERIK_ENCRYPTION_KEY}
+      Sitecore_AppSettings_Telerik.Web.UI.DialogParametersEncryptionKey: ${TELERIK_ENCRYPTION_KEY}
+      SOLR_CORE_PREFIX_NAME: ${DATA_PREFIX}
+      MEDIA_REQUEST_PROTECTION_SHARED_SECRET: ${MEDIA_REQUEST_PROTECTION_SHARED_SECRET}
+      LOG_LEVEL_VALUE: ${LOG_LEVEL_VALUE}
+      SITECORE_LICENSE_LOCATION: C:\license\license.xml
+      SITECORE_JSS_RENDERING_INTERNAL_URL: http://host.docker.internal:5000/jss-render
+      SITECORE_JSS_RENDERING_PUBLIC_URL: https://localhost:5001
+      SITECORE_JSS_EDITING_SECRET: ${EDITING_SECRET}
+      SITECORE_GraphQL_CORS: ${SITECORE_GRAPHQL_CORS}
+      SITECORE_Pages_Client_Host: ${SITECORE_Pages_Client_Host}
+      SITECORE_Pages_CORS_Allowed_Origins: ${SITECORE_Pages_CORS_Allowed_Origins}
+      SITECORE_DEVELOPMENT_PATCHES: DevEnvOn,CustomErrorsOff,DebugOn,DiagnosticsOff,InitMessagesOff
+      Sitecore_AppSettings_exmEnabled:define: "no"
+    healthcheck:
+      test: ["CMD", "powershell", "-Command", "C:/Healthchecks/Healthcheck.ps1"]
+      timeout: 300s
+    depends_on:
+      mssql:
+        condition: service_healthy
+      solr-init:
+        condition: service_started
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cm-secure.entrypoints=websecure"
+      - "traefik.http.routers.cm-secure.rule=Host(`${CM_HOST}`)"
+      - "traefik.http.routers.cm-secure.tls=true"
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: 8GB

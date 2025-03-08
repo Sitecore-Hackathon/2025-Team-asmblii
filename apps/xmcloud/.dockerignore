@@ -1,0 +1,18 @@
+# folders
+.git
+.github
+.gitignore
+.vs
+.config
+.sitecore
+docker
+
+# files
+*Dockerfile
+docker-compose*
+**/*.md
+*.ps1
+**/*.yml
+**/*.module.json
+sitecore.json
+.env
