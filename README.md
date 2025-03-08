@@ -7,11 +7,11 @@
 
 ## Team name
 
-⟹ Team asmblii
+Team asmblii
 
 ## Category
 
-⟹ All of 'em!
+All of 'em!
 
 ## Description
 
@@ -29,18 +29,18 @@ The demo architecture:
 
 What parts do we instrument in this submission?
 
-1. Traefik
+1. Traefik (built in)
     - Traces
     - Metrics
     - Logs
-1. Next.js/JSS Head
+1. Next.js/JSS Head (uses JavaScript SDK)
     - Traces (calls to XM Cloud GraphQL endpoint, calls to the ASP.NET Core API)
     - Metrics
-1. ASP.NET Core API
+1. ASP.NET Core API (uses .NET SDK)
     - Traces (HTTP calls to external API's, calls to Solr)
     - Metrics
     - Logs
-1. Solr
+1. Solr (uses zero-code instrumentation)
     - Traces
     - Metrics
     - Logs
