@@ -14,7 +14,7 @@ services:
     volumes:
       - .:c:\repo
     working_dir: c:\repo
-    entrypoint: cmd /c "npm ci && npm start"
+    entrypoint: cmd /c "echo ""## Installing..."" && npm ci && echo ""## Starting..."" && npm start"
     labels:
       traefik.enable: true
       traefik.http.routers.headnextjs.entrypoints: websecure
