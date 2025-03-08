@@ -45,6 +45,7 @@ services:
     isolation: ${ISOLATION}
     environment:
       SOLR__URI: http://api-solr:8983/solr
+      OTLPEXPORTER__ENDPOINT: http://aspire:18889
     labels:
       - "traefik.enable=true"
       - "traefik.http.services.api-app.loadbalancer.server.port=8080"

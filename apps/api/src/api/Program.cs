@@ -1,28 +1,64 @@
 using api.Models;
 using api.Repositories;
 using api.Services;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using SolrNet;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// add healthchecks
 builder.Services.AddHealthChecks();
 
-// Add services to the container.
-/******** OpenApi ********/
+// add opentelemetry
+var serviceName = builder.Configuration.GetValue<string>("OtelServiceName") ?? "api-app";
+var otlpExporterSection = builder.Configuration.GetSection("OtlpExporter");
+
+builder.Logging.AddOpenTelemetry(options =>
+{
+    options.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(serviceName));
+    options.AddOtlpExporter(options => otlpExporterSection.Bind(options));
+});
+
+builder.Services.AddOpenTelemetry()
+      .ConfigureResource(resource => resource.AddService(serviceName))
+      .WithTracing(tracing =>
+      {
+          if (builder.Environment.IsDevelopment())
+          {
+              tracing.SetSampler<AlwaysOnSampler>();
+          }
+
+          tracing
+            .AddAspNetCoreInstrumentation()
+            .AddHttpClientInstrumentation()
+            .AddRedisInstrumentation(options =>
+            {
+                if (builder.Environment.IsDevelopment())
+                {
+                    options.SetVerboseDatabaseStatements = true;
+                    options.FlushInterval = TimeSpan.FromSeconds(1);
+                }
+            })
+            .SetErrorStatusOnException()
+            .AddOtlpExporter(options => otlpExporterSection.Bind(options));
+      })
+      .WithMetrics(metrics => metrics
+          .AddAspNetCoreInstrumentation()
+          .AddHttpClientInstrumentation()
+          .AddRuntimeInstrumentation()
+          .AddOtlpExporter(options => otlpExporterSection.Bind(options)));
+
+// add OpenAPI
 builder.Services.AddOpenApi();
 
-
-/******** Solr ********/
-
+// add API services
 var solrUri = builder.Configuration["Solr:Uri"];
 
-builder.Services.AddSolrNet<SolrSearchResultEntry>(solrUri);  //localhost to be replaced by?
+builder.Services.AddSolrNet<SolrSearchResultEntry>(solrUri); 
 builder.Services.AddScoped<ISolrRepository, SolrRepository>();
-
-
-/******** DadJokes ********/
-
-
 builder.Services.AddHttpClient<IDadJokeService, DadJokeService>(client =>
 {
     var icanhazdadjokesAddress = builder.Configuration["ICanHazDadJokes:Uri"] ?? throw new Exception("Baseaddress for the joke service is not set!");
@@ -33,23 +69,24 @@ builder.Services.AddHttpClient<IDadJokeService, DadJokeService>(client =>
     client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
 });
 
-
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    // add OpenAPI endpoints
+    app.MapOpenApi();
+}
+
+// add healthcheck endpoint
 app.MapHealthChecks("/healthz");
 
-app.MapGet("/test",  () =>
+// add test endpoint
+app.MapGet("/test", () =>
 {
     return "solr:uri=" + solrUri;
 }).WithName("Test");
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
-/******** SOLR methods ********/
+// add Solr endpoint
 app.MapGet("/solrsearch", async (ISolrRepository solrRepository, string query, int start, int rows) =>
 {
     var results = await solrRepository.Search(query, start, rows);
@@ -61,7 +98,6 @@ app.MapGet("/solrping", async (ISolrRepository solrRepository) =>
     var results = await solrRepository.Ping();
     return results;
 }).WithName("SolrPing");
-
 
 /******** IHazDadJokes methods ********/
 app.MapGet("/dadjoke", async (IDadJokeService dadJokeService, string id) =>
@@ -76,8 +112,6 @@ app.MapGet("/randomdadjoke", async (IDadJokeService dadJokeService) =>
     return results;
 }).WithName("RandomDadJoke");
 
-
-//initiate the app
+// ready to run
 app.Run();
-
 
