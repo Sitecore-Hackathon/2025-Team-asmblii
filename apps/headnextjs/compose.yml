@@ -18,6 +18,6 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.headnextjs.entrypoints: websecure
-      traefik.http.routers.headnextjs.rule: Host(`headnextjss.2025-team-asmblii.localhost`)"
+      traefik.http.routers.headnextjs.rule: Host(`headnextjss.2025-team-asmblii.localhost`)
       traefik.http.routers.headnextjs.tls: true
       traefik.http.services.headnextjs.loadbalancer.server.port: 5000
