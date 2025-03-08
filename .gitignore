@@ -284,9 +284,6 @@ Session.vim
 config.ps1
 **/IISApplications
 
-# VS debug support files
-launchSettings.json
-
 # Snapcraft files
 .snapcraft
 *.snap
