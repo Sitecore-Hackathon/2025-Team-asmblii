@@ -38,6 +38,11 @@ var app = builder.Build();
 
 app.MapHealthChecks("/healthz");
 
+app.MapGet("/test",  () =>
+{
+    return "solr:uri=" + solrUri;
+}).WithName("Test");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
