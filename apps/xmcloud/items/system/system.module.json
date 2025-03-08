@@ -5,22 +5,22 @@
     "includes": [
       {
         "name": "module",
-        "path": "/sitecore/system/settings/Project/<SITE_COLLECTION_NAME>",
+        "path": "/sitecore/system/settings/Project/team-asmblii",
         "allowedPushOperations": "CreateUpdateAndDelete"
       },
       {
         "name": "templatesProject",
-        "path": "/sitecore/templates/Project/<SITE_COLLECTION_NAME>",
+        "path": "/sitecore/templates/Project/team-asmblii",
         "allowedPushOperations": "CreateUpdateAndDelete"
       },
       {
         "name": "branchesProject",
-        "path": "/sitecore/templates/Branches/Project/<SITE_COLLECTION_NAME>",
+        "path": "/sitecore/templates/Branches/Project/team-asmblii",
         "allowedPushOperations": "CreateUpdateAndDelete"
       },
       {
         "name": "projectMediaFolders",
-        "path": "/sitecore/Media Library/Project/<SITE_COLLECTION_NAME>",
+        "path": "/sitecore/Media Library/Project/team-asmblii",
         "rules": [
           {
             "path": "/shared",
@@ -28,7 +28,7 @@
             "allowedPushOperations": "CreateOnly"
           },
           {
-            "path": "/<SITE_NAME>",
+            "path": "/headnextjs",
             "scope": "SingleItem",
             "allowedPushOperations": "CreateOnly"
           }
@@ -36,28 +36,28 @@
       },
       {
         "name": "layoutsProject",
-        "path": "/sitecore/Layout/Layouts/Project/<SITE_COLLECTION_NAME>",
+        "path": "/sitecore/Layout/Layouts/Project/team-asmblii",
         "allowedPushOperations": "CreateUpdateAndDelete"
       },
       {
         "name": "projectRenderings",
-        "path": "/sitecore/Layout/Renderings/Project/<SITE_COLLECTION_NAME>",
+        "path": "/sitecore/Layout/Renderings/Project/team-asmblii",
         "allowedPushOperations": "CreateUpdateAndDelete"
       },
       {
         "name": "projectPlaceholderSettings",
-        "path": "/sitecore/Layout/Placeholder Settings/Project/<SITE_COLLECTION_NAME>",
+        "path": "/sitecore/Layout/Placeholder Settings/Project/team-asmblii",
         "allowedPushOperations": "CreateUpdateAndDelete"
       },
       {
         "name": "tenantRoot",
-        "path": "/sitecore/content/<SITE_COLLECTION_NAME>",
+        "path": "/sitecore/content/team-asmblii",
         "scope": "SingleItem",
         "allowedPushOperations": "CreateAndUpdate"
       },
       {
         "name": "site",
-        "path": "/sitecore/content/<SITE_COLLECTION_NAME>/<SITE_NAME>",
+        "path": "/sitecore/content/team-asmblii/headnextjs",
         "rules": [
           {
             "path": "/home",
