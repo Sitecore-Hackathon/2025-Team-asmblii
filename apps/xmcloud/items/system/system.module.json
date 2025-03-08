@@ -4,6 +4,11 @@
   "items": {
     "includes": [
       {
+        "name": "apikey",
+        "path": "/sitecore/system/Settings/Services/API Keys/API Key",
+        "allowedPushOperations": "CreateUpdateAndDelete"
+      },
+      {
         "name": "module",
         "path": "/sitecore/system/settings/Project/team-asmblii",
         "allowedPushOperations": "CreateUpdateAndDelete"
