@@ -1,11 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextFetchEvent, NextRequest } from 'next/server';
 import { debug } from '@sitecore-jss/sitecore-jss-nextjs/middleware';
-import { personalizePlugin } from './plugins/personalize'
-
-const plugins = [
-  personalizePlugin
-]
+import * as plugins from './plugins';
 
 export interface MiddlewarePlugin {
   /**
