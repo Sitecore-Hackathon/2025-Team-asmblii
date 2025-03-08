@@ -5,9 +5,10 @@ Accept: application/json
 
 ###
 
-GET {{api_HostAddress}}/randomdadjoke
-
+GET {{api_HostAddress}}/dadjoke/R7UfaahVfFd
+Accept: application/json
 ###
+
 
 GET {{api_HostAddress}}/solrping
 
@@ -17,3 +18,4 @@ GET {{api_HostAddress}}/solrping
 POST {{api_HostAddress}}/solrsearch
 
 ###
+
