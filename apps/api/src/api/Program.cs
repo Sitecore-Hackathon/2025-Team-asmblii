@@ -51,7 +51,7 @@ app.MapPost("/solrsearch", async (ISolrRepository solrRepository, string query, 
     return results;
 }).WithName("SolrSearch");
 
-app.MapGet("/solrping", async (ISolrRepository solrRepository, string query, int start, int rows) =>
+app.MapGet("/solrping", async (ISolrRepository solrRepository) =>
 {
     var results = await solrRepository.Ping();
     return results;
