@@ -11,7 +11,7 @@ Team asmblii
 
 ## Category
 
-All of 'em!
+...
 
 ## Description
 
@@ -74,4 +74,4 @@ No special or manual configuration needed! 🚀🚀🚀
 
 ## Comments
 
-TODO
+...
