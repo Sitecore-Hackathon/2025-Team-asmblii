@@ -29,18 +29,18 @@ The demo architecture:
 
 What parts do we instrument in this submission?
 
-1. Traefik (built in)
+1. Traefik (OTel built in)
     - Traces
     - Metrics
     - Logs
-1. Next.js/JSS Head (uses JavaScript SDK)
+1. Next.js/JSS Head (uses OTel JavaScript SDK)
     - Traces (calls to XM Cloud GraphQL endpoint, calls to the ASP.NET Core API)
     - Metrics
-1. ASP.NET Core API (uses .NET SDK)
+1. ASP.NET Core API (uses OTel .NET SDK)
     - Traces (HTTP calls to external API's, calls to Solr)
     - Metrics
     - Logs
-1. Solr (uses zero-code instrumentation)
+1. Solr (uses OTel zero-code instrumentation)
     - Traces
     - Metrics
     - Logs
@@ -66,10 +66,11 @@ No special or manual configuration needed! 🚀🚀🚀
 
 ## Usage instructions
 
-1. Browse <https://headnextjss.2025-team-asmblii.localhost/>, refresh a few times...
+1. Browse <https://headnextjss.2025-team-asmblii.localhost/>...
 1. Open <https://dashboard.2025-team-asmblii.localhost> explore all the glorious traces, metrics and structured logs 🦄🎉!
-1. TODO: browse url that calls api-app endpoint that fails with 500, tell how to find in dashboard
-1. TODO: browse url that calls api-app endpoint that is VERY slow, tell how to find in dashboard
+1. You can also try these urls to force interesting data:
+    - <https://dashboard.2025-team-asmblii.localhost/slow> (trace with high duration)
+    - <https://dashboard.2025-team-asmblii.localhost/throw> (trace that has errors)
 
 ## Comments
 
