@@ -16,8 +16,6 @@ services:
       NEXT_PUBLIC_OTEL_SERVICE_NAME: nextjs-headnextjs
       REVALIDATION_SECRET: very-secret
       API_URL: http://api-app:8080
-      
-      NODE_TLS_REJECT_UNAUTHORIZED: 0
     volumes:
       - .:c:\repo
     working_dir: c:\repo
