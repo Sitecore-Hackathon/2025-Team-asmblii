@@ -23,6 +23,7 @@ import * as RowSplitter from 'src/components/RowSplitter';
 import * as Title from 'src/components/Title';
 
 import * as RandomJoke from 'src/components/RandomJoke'; 
+import * as ApiHi from 'src/components/ApiHi';
 
 export const components = new Map();
 //components.set('BYOCWrapper', BYOCWrapper);
@@ -43,6 +44,7 @@ components.set('RichText', RichText);
 components.set('RowSplitter', RowSplitter);
 components.set('Title', Title);
 components.set('random-joke', RandomJoke);
+components.set('Api Hi', ApiHi);
 
 export const componentBuilder = new ComponentBuilder({ components });
 
