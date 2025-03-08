@@ -32,7 +32,7 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
       <Scripts />
       <Head>
         <title>{fields?.Title?.value?.toString() || 'Page'}</title>
-        <link rel="icon" href={`${publicUrl}/favicon.ico`} />
+        <link rel="shortcut icon" type="image/svg" href={`${publicUrl}/asmblii-logo.svg`} />
         {headLinks.map((headLink) => (
           <link rel={headLink.rel} key={headLink.href} href={headLink.href} />
         ))}
