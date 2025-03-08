@@ -68,9 +68,9 @@ No special or manual configuration needed! 🚀🚀🚀
 
 1. Browse <https://headnextjss.2025-team-asmblii.localhost/>...
 1. Open <https://dashboard.2025-team-asmblii.localhost> explore all the glorious traces, metrics and structured logs 🦄🎉!
-1. You can also try these urls to force interesting data:
-    - <https://dashboard.2025-team-asmblii.localhost/slow> (trace with high duration)
-    - <https://dashboard.2025-team-asmblii.localhost/throw> (trace that has errors)
+1. You can also try these urls to force more interesting data:
+    - <https://headnextjss.2025-team-asmblii.localhost/slow> (trace with high duration)
+    - <https://headnextjss.2025-team-asmblii.localhost/throw> (trace that has errors)
 
 ## Comments
 
