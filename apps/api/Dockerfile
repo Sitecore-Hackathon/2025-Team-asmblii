@@ -1,0 +1,29 @@
+# escape=`
+ARG TAG=ltsc2022
+
+# ---
+FROM mcr.microsoft.com/dotnet/sdk:9.0-nanoserver-$TAG AS build
+
+WORKDIR /source
+
+# copy project file and restore as distinct layers
+COPY ./*.sln .
+COPY ./src/api/*.csproj ./src/api/
+RUN dotnet restore
+
+# copy source code and publish app
+COPY . .
+RUN dotnet publish ./src/api/ -o /app
+
+# ---
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-nanoserver-$TAG
+
+EXPOSE 8080
+
+WORKDIR /app
+
+COPY --link --from=build /app .
+
+HEALTHCHECK CMD curl -sf --show-error http://localhost:8080/healthz || exit 1
+
+ENTRYPOINT ["api"]

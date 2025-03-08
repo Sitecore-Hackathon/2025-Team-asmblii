@@ -38,3 +38,16 @@ services:
         limits:
           cpus: "2"
           memory: 3GB
+
+  api-app:
+    build:
+      context: .
+    isolation: ${ISOLATION}
+    environment:
+      SOLR__URI: http://api-solr:8983/solr
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.api-app.loadbalancer.server.port=8080"
+      - "traefik.http.routers.api-app.entrypoints=websecure"
+      - "traefik.http.routers.api-app.rule=Host(`api-app.2025-team-asmblii.localhost`)"
+      - "traefik.http.routers.api-app.tls=true"

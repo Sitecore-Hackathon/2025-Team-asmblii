@@ -5,6 +5,8 @@ using SolrNet;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHealthChecks();
+
 // Add services to the container.
 /******** OpenApi ********/
 builder.Services.AddOpenApi();
@@ -23,7 +25,7 @@ builder.Services.AddScoped<ISolrRepository, SolrRepository>();
 
 builder.Services.AddHttpClient<IDadJokeService, DadJokeService>(client =>
 {
-    var icanhazdadjokesAddress = builder.Configuration["ICanHazDadJokes:Uri"] ?? throw new Exception("Baseaddress for the joke service is not set!"); 
+    var icanhazdadjokesAddress = builder.Configuration["ICanHazDadJokes:Uri"] ?? throw new Exception("Baseaddress for the joke service is not set!");
     var requestingParty = builder.Configuration["ICanHazDadJokes:RequestingParty"] ?? throw new Exception("If using ICanHazDadJoke they kindly request that contact details in form of a website or email is supplied to requests to their free API. See https://icanhazdadjoke.com/api#custom-user-agent for more info.");
 
     client.BaseAddress = new Uri(icanhazdadjokesAddress);
@@ -33,6 +35,8 @@ builder.Services.AddHttpClient<IDadJokeService, DadJokeService>(client =>
 
 
 var app = builder.Build();
+
+app.MapHealthChecks("/healthz");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
