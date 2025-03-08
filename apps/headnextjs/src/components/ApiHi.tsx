@@ -1,4 +1,4 @@
-import type { GetStaticComponentProps } from "@sitecore-jss/sitecore-jss-nextjs";
+import type { GetServerSideComponentProps, GetStaticComponentProps } from "@sitecore-jss/sitecore-jss-nextjs";
 
 const url = process.env.API_URL + "/slowhi"
 
@@ -17,6 +17,10 @@ export const getStaticProps: GetStaticComponentProps = async () => {
     return await fetchHi();
 };
 
+export const getServerSideProps: GetServerSideComponentProps = async () => {
+    return await fetchHi();
+};
+
 type ComponentProps = {
     response: {
         message: string
@@ -26,7 +30,7 @@ type ComponentProps = {
 export const Default = (props: ComponentProps) => {
     return (
         <div className="component">
-            {props.response.message}
+            {props.response?.message}
         </div>
     )
 }
