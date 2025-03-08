@@ -16,7 +16,7 @@ builder.Services.AddOpenApi();
 
 var solrUri = builder.Configuration["Solr:Uri"];
 
-builder.Services.AddSolrNet<SolrSearchResultEntry>(solrUri);  //localhost to be replaced by?
+builder.Services.AddSolrNet<SolrSearchResultEntry>(solrUri); 
 builder.Services.AddScoped<ISolrRepository, SolrRepository>();
 
 
@@ -45,7 +45,7 @@ if (app.Environment.IsDevelopment())
 }
 
 /******** SOLR methods ********/
-app.MapGet("/solrsearch", async (ISolrRepository solrRepository, string query, int start, int rows) =>
+app.MapPost("/solrsearch", async (ISolrRepository solrRepository, string query, int start, int rows) =>
 {
     var results = await solrRepository.Search(query, start, rows);
     return results;
