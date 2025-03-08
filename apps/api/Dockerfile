@@ -22,8 +22,6 @@ EXPOSE 8080
 
 WORKDIR /app
 
-COPY --link --from=build /app .
-
-HEALTHCHECK CMD curl -sf --show-error http://localhost:8080/healthz || exit 1
+COPY --from=build /app .
 
 ENTRYPOINT ["api"]

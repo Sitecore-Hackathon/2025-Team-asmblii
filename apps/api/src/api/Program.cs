@@ -38,6 +38,11 @@ var app = builder.Build();
 
 app.MapHealthChecks("/healthz");
 
+app.MapGet("/test",  () =>
+{
+    return "solr:uri=" + solrUri;
+}).WithName("Test");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -51,7 +56,7 @@ app.MapGet("/solrsearch", async (ISolrRepository solrRepository, string query, i
     return results;
 }).WithName("SolrSearch");
 
-app.MapGet("/solrping", async (ISolrRepository solrRepository, string query, int start, int rows) =>
+app.MapGet("/solrping", async (ISolrRepository solrRepository) =>
 {
     var results = await solrRepository.Ping();
     return results;
