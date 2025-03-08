@@ -86,11 +86,9 @@ Add-HostsEntry $xmCloudHost
 Add-HostsEntry "api-solr.2025-team-asmblii.localhost"
 Add-HostsEntry "api-app.2025-team-asmblii.localhost"
 Add-HostsEntry "headnextjss.2025-team-asmblii.localhost"
+Add-HostsEntry "dashboard.2025-team-asmblii.localhost"
 
 Write-Host "Done!" -ForegroundColor Green
-
-# start local XM Cloud instance
-Push-Location (Join-Path $repoRoot "./apps/xmcloud")
 
 try
 {

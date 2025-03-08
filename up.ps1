@@ -1,3 +1,8 @@
+param(
+    [Parameter(Mandatory = $false)]
+    [switch]$RebuildIndexes
+)
+
 # ensure Windows docker engine is running
 docker desktop engine use windows
 
@@ -20,12 +25,9 @@ Write-Host "Starting stack..." -ForegroundColor Green
 
 docker compose up -d
 
-# start local XM Cloud instance
-Push-Location .\apps\xmcloud
-
 try
 {
-  .\up.ps1
+  .\up.ps1 -RebuildIndexes:$RebuildIndexes
 }
 finally
 {
