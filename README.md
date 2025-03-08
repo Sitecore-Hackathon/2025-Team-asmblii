@@ -19,35 +19,31 @@
 
 OpenTelemetry (OTel) is an open-source, [CNCF backed](https://www.cncf.io/projects/opentelemetry/), cross-platform, vendor-neutral framework and specification for making systems observable. It achieves this by instrumenting code to emit traces, metrics, and logs in a standardized format, which can then be sent to an observability backend.
 
-In this case the [ASP.NET Aspire Dashboard](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/dashboard/standalone?tabs=bash) as used as it is a simple OTel collector and UI that is easy to run locally. Alternatives could be SigNoz, New Relic, DataDog, Azure App Insights etc. which all supports ingesting OTel data.
+In this case the [ASP.NET Aspire Dashboard](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/dashboard/standalone?tabs=bash) as used as it is a simple OTel collector and UI that is easy to run locally. Alternatives could be platforms such as SigNoz, New Relic, DataDog, Azure App Insights etc. which all supports ingesting OTel data.
+
+TODO: insert image of aspire with a deep trace
 
 The demo architecture:
 
-````text
+![Architecture](docs/images/architecture.png?raw=true "Architecture")
 
-client -> traefik - next.js -> asp.net api -> solr
-
-````
-
-
-What parts of the stack do we instrument in this submission?
+What parts do we instrument in this submission?
 
 1. Traefik
     - Traces
     - Metrics
     - Logs
-1. Next.js/JSS
-    - Traces
+1. Next.js/JSS Head
+    - Traces (calls to XM Cloud GraphQL endpoint, calls to the ASP.NET Core API)
     - Metrics
 1. ASP.NET Core API
-    - Traces
+    - Traces (HTTP calls to external API's, calls to Solr)
     - Metrics
     - Logs
 1. Solr
     - Traces
     - Metrics
     - Logs
-
 
 ## Video link
 
