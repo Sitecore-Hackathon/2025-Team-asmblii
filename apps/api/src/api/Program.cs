@@ -131,11 +131,6 @@ app.MapGet("solrcorestatus", async (ISolrCoreAdmin solrCoreAdmin) =>
     return true;
 }).WithName("SolrCoreStatus");
 
-app.MapPost("initSolr", (ISolrCoreAdmin solrCoreAdmin) =>
-{
-    var results = solrCoreAdmin.Create("asmblii", "asmblii");
-    return results;
-}).WithName("initSolr");
 
 
 

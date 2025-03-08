@@ -27,7 +27,3 @@ GET {{api_HostAddress}}/test
 GET {{api_HostAddress}}/solrcorestatus
 
 ###
-
-POST {{api_HostAddress}}/initSolr
-
-###
