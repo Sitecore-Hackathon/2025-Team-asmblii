@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="oW3V_kv0o6hQznggvL2G" name="Page-1">
-        <mxGraphModel dx="727" dy="542" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="248" dy="542" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -8,13 +8,13 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="2" value="Traefik Proxy" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;sketch=1;curveFitting=1;jiggle=2;fontFamily=Lucida Console;fontSize=10;" vertex="1" parent="1">
-                    <mxGeometry x="240" y="110" width="120" height="30" as="geometry"/>
+                    <mxGeometry x="280" y="200" width="120" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="10" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="2">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="3" value="" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;sketch=1;curveFitting=1;jiggle=2;fontFamily=Lucida Console;fontSize=10;" vertex="1" parent="1">
-                    <mxGeometry x="280" y="20" width="40" height="50" as="geometry"/>
+                    <mxGeometry x="320" y="110" width="40" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="13" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="4" target="6">
                     <mxGeometry relative="1" as="geometry"/>
@@ -23,30 +23,30 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="Next.js/JSS Head" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;sketch=1;curveFitting=1;jiggle=2;fontFamily=Lucida Console;fontSize=10;" vertex="1" parent="1">
-                    <mxGeometry x="240" y="180" width="120" height="30" as="geometry"/>
+                    <mxGeometry x="280" y="270" width="120" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="5" value="ASP.NET API" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;sketch=1;curveFitting=1;jiggle=2;fontFamily=Lucida Console;fontSize=10;" vertex="1" parent="1">
-                    <mxGeometry x="310" y="250" width="120" height="30" as="geometry"/>
+                    <mxGeometry x="350" y="340" width="120" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="6" value="XM Cloud" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;sketch=1;curveFitting=1;jiggle=2;fontFamily=Lucida Console;fontSize=10;" vertex="1" parent="1">
-                    <mxGeometry x="170" y="250" width="120" height="30" as="geometry"/>
+                    <mxGeometry x="210" y="340" width="120" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="7" value="External API" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;sketch=1;curveFitting=1;jiggle=2;fontFamily=Lucida Console;fontSize=10;" vertex="1" parent="1">
-                    <mxGeometry x="240" y="320" width="120" height="30" as="geometry"/>
+                    <mxGeometry x="280" y="410" width="120" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="8" value="Solr" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;sketch=1;curveFitting=1;jiggle=2;fontFamily=Lucida Console;fontSize=10;" vertex="1" parent="1">
-                    <mxGeometry x="380" y="320" width="120" height="30" as="geometry"/>
+                    <mxGeometry x="420" y="410" width="120" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="15" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="5" target="8">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="429.48" y="290" as="sourcePoint"/>
-                        <mxPoint x="489.48" y="320" as="targetPoint"/>
+                        <mxPoint x="469.48" y="380" as="sourcePoint"/>
+                        <mxPoint x="529.48" y="410" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="16" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="5" target="7">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="370" y="280" as="sourcePoint"/>
-                        <mxPoint x="440" y="340" as="targetPoint"/>
+                        <mxPoint x="410" y="370" as="sourcePoint"/>
+                        <mxPoint x="480" y="430" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
             </root>
