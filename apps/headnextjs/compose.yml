@@ -11,6 +11,9 @@ services:
         OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: ${OTLP_COLLECTOR}/v1/traces
         OTEL_EXPORTER_OTLP_METRICS_ENDPOINT: ${OTLP_COLLECTOR}/v1/metrics
         NEXT_TELEMETRY_DISABLED: 1
+        SITECORE_SITE_NAME: headnextjs
+        OTEL_SERVICE_NAME: nextjs-headnextjs
+        NEXT_PUBLIC_OTEL_SERVICE_NAME: nextjs-headnextjs
     environment:
       SITECORE_EDGE_URL: ${SITECORE_EDGE_URL:-}
       SITECORE_EDGE_CONTEXT: ${SITECORE_EDGE_CONTEXT:-}
@@ -20,10 +23,14 @@ services:
       OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: ${OTLP_COLLECTOR}/v1/traces
       OTEL_EXPORTER_OTLP_METRICS_ENDPOINT: ${OTLP_COLLECTOR}/v1/metrics
       NEXT_TELEMETRY_DISABLED: 1
+      SITECORE_SITE_NAME: headnextjs
+      OTEL_SERVICE_NAME: nextjs-headnextjs
+      NEXT_PUBLIC_OTEL_SERVICE_NAME: nextjs-headnextjs
     volumes:
       - .:c:\repo
     working_dir: c:\repo
-    entrypoint: cmd /c "echo ""## Installing..."" && npm ci && echo ""## Starting..."" && npm start"
+    #entrypoint: cmd /c "echo ""## Installing..."" && npm ci && echo ""## Starting..."" && npm start"
+    entrypoint: cmd /c "echo ""## Starting..."" && npm start"
     labels:
       traefik.enable: true
       traefik.http.routers.headnextjs.entrypoints: websecure
