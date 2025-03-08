@@ -59,7 +59,7 @@ app.MapGet("/solrping", async (ISolrRepository solrRepository) =>
 
 
 /******** IHazDadJokes methods ********/
-app.MapGet("/dadjoke", async (IDadJokeService dadJokeService, string id) =>
+app.MapGet("/dadjoke/{id}", async (IDadJokeService dadJokeService, string id) =>
 {
     var results = await dadJokeService.GetJokeAsync(id);
     return results;
