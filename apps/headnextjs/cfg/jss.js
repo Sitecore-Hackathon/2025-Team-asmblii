@@ -1,5 +1,5 @@
 const config = {
-    sitecoreApiKey: process.env.SITECORE_API_KEY ?? 'missing',
+    sitecoreApiKey: process.env.SITECORE_API_KEY ?? '',
     sitecoreApiHost: process.env.SITECORE_API_HOST ?? '',
     sitecoreEdgeUrl: process.env.SITECORE_EDGE_URL ?? '',
     sitecoreEdgeContextId: process.env.SITECORE_EDGE_CONTEXT ?? '',
@@ -9,10 +9,6 @@ const config = {
     defaultLanguage: process.env.DEFAULT_LANGUAGE ?? 'en',
     locales: ['en'],
     graphQLEndpoint: process.env.GRAPH_QL_ENDPOINT ?? '',
-    searchCustomerKey: process.env.SEARCH_CUSTOMERKEY,
-    searchApiKey: process.env.SEARCH_APIKEY,
-    searchApiHost: process.env.SEARCH_APIHOST,
-    searchEnv: process.env.SEARCH_ENV ?? 'prodEu',
   };
   
   module.exports = config;
