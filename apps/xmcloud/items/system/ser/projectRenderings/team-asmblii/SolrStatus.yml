@@ -1,18 +1,24 @@
 ﻿---
-ID: "7b719a45-bbc8-4352-bd2a-4558b9fc229d"
+ID: "3becd76d-e724-4076-b5d0-e8db2e60b53b"
 Parent: "72d6b55c-4d84-4733-836a-9f73eb27c9cd"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
-Path: "/sitecore/layout/Renderings/Project/team-asmblii/Api Hi"
+Path: "/sitecore/layout/Renderings/Project/team-asmblii/SolrStatus"
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
-  Value: Api Hi
+  Value: SolrStatus
 - ID: "308e88f5-cd6e-4f8f-bafe-95a47dedefdc"
   Hint: Editable
   Value: 
 - ID: "7d8ae35f-9ed1-43b5-96a2-0a5f040d4e4e"
   Hint: Open Properties after Add
   Value: 0
+- ID: "c39a90ce-0035-41bb-90f6-3c8a6ea87797"
+  Hint: AddFieldEditorButton
+  Value: 
+- ID: "f172b787-7b88-4bd5-ae4d-6308e102ef11"
+  Hint: Enable Datasource Query
+  Value: 
 Languages:
 - Language: en
   Versions:
@@ -20,7 +26,7 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20250308T200007Z
+      Value: 20250308T233140Z
     - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
       Hint: __Owner
       Value: |
@@ -31,11 +37,11 @@ Languages:
         sitecore\jba@asmblii.com
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "00b74853-b21b-4b80-b4de-d654a6e5c70d"
+      Value: "e7232ecc-c7bc-4edb-8b11-85423ee2dece"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
         sitecore\jba@asmblii.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250308T233213Z
+      Value: 20250308T233206Z

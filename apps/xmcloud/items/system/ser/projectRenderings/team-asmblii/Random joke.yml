@@ -10,6 +10,9 @@ SharedFields:
 - ID: "308e88f5-cd6e-4f8f-bafe-95a47dedefdc"
   Hint: Editable
   Value: 
+- ID: "7d8ae35f-9ed1-43b5-96a2-0a5f040d4e4e"
+  Hint: Open Properties after Add
+  Value: 0
 Languages:
 - Language: en
   Versions:
@@ -28,11 +31,11 @@ Languages:
         sitecore\jba@asmblii.com
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "f78f352a-9909-474f-b862-75578863592e"
+      Value: "f10a3ce8-1cc2-4afc-8de1-ae33e51705c4"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
         sitecore\jba@asmblii.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250308T200031Z
+      Value: 20250308T233210Z

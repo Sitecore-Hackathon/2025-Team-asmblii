@@ -24,6 +24,8 @@ import * as Title from 'src/components/Title';
 
 import * as RandomJoke from 'src/components/RandomJoke'; 
 import * as ApiHi from 'src/components/ApiHi';
+import * as ApiError from 'src/components/ApiError';
+import * as SolrStatus from 'src/components/SolrStatus';
 
 export const components = new Map();
 //components.set('BYOCWrapper', BYOCWrapper);
@@ -45,6 +47,8 @@ components.set('RowSplitter', RowSplitter);
 components.set('Title', Title);
 components.set('random-joke', RandomJoke);
 components.set('Api Hi', ApiHi);
+components.set('Api Error', ApiError);
+components.set('SolrStatus', SolrStatus);
 
 export const componentBuilder = new ComponentBuilder({ components });
 
