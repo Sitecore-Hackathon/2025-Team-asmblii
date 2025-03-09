@@ -1,5 +1,4 @@
 import type { GetServerSideComponentProps, GetStaticComponentProps } from "@sitecore-jss/sitecore-jss-nextjs";
-import { Fragment } from "react";
 
 const url = process.env.API_URL + "/solrcorestatus"
 
