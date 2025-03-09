@@ -18,7 +18,10 @@ export const getServerSideProps: GetServerSideComponentProps = async () => {
 
 
 type ComponentProps = {
-    cores: Array<{ [key: string]: string }>;
+    cores: Array<{ 
+        name: string;
+        index: { [key: string]: string };
+    }>;
 };
 
 export const Default = (props: ComponentProps): JSX.Element => {
@@ -27,15 +30,10 @@ export const Default = (props: ComponentProps): JSX.Element => {
             {props.cores.map(obj => (
                 <div key={obj.name}>
                     <h2>SolR {obj.name} Status</h2>
-                    <pre>{JSON.stringify(obj)}</pre>
-                    {/* <dl>
-                        {Object.keys(obj).map(key => (
-                            <Fragment key={key}>
-                                <dt>{key}</dt>
-                                <dd>{obj[key]}</dd>
-                            </Fragment>
-                        ))}
-                    </dl> */}
+                    <dl>
+                        <dt>Size:</dt>
+                        <dd>{obj.index?.size}</dd>
+                    </dl>
                 </div>
             ))}
         </div>
