@@ -1,6 +1,7 @@
 using api.Models;
 using api.Repositories;
 using api.Services;
+using Microsoft.AspNetCore.Mvc;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
@@ -141,6 +142,16 @@ app.MapGet("/slowhi", async () =>
     await Task.Delay(value);
     return new { message = "Hi" };
 }).WithName("SlowHi");
+
+/******** Test methods.... *******/
+app.MapGet("/err", async ([FromServices]ILogger logger) => 
+{
+    var value = new Random().Next(10, 1000);
+    logger.LogInformation("Let's wait {DelayMs}", value);
+    await Task.Delay(value);
+    throw new NotImplementedException("Someone forgot something here?");
+}).WithName("Err");
+
 
 app.MapGet("/randomrequests", async (HttpClient client) =>
 {
