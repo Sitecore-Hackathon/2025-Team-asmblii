@@ -34,5 +34,5 @@ Shutdown:
 - Traefik: <http://localhost:8079>
 - Aspire Dashboard: <https://dashboard.2025-team-asmblii.localhost>
 - API app: <https://api-app.2025-team-asmblii.localhost>
-- API solr: <https://api-solr.2025-team-asmblii.localhost>
+- API solr: <https://api-solr.2025-team-asmblii.localhost/solr/>
 - NextJS head: <https://headnextjss.2025-team-asmblii.localhost>
