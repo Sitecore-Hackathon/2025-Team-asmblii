@@ -23,7 +23,7 @@ Here we use the [ASP.NET Aspire Dashboard](https://learn.microsoft.com/en-us/dot
 
 BEHOLD! A deep trace all the way from Traefik down to Solr through Next.js and a ASP.NET API:
 
-![Aspire](docs/images/aspire.png?raw=true "Aspire")
+![Aspire](docs/images/aspire2.png?raw=true "Aspire")
 
 The demo architecture:
 
