@@ -89,6 +89,10 @@ if (app.Environment.IsDevelopment())
 // add healthcheck endpoint
 app.MapHealthChecks("/healthz");
 
+app.MapGet("/", async () => {
+    return "Welcome";
+}).WithName("Index");
+
 // add test endpoint
 app.MapGet("/test", () =>
 {
