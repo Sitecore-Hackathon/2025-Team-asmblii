@@ -25,3 +25,9 @@ services:
       traefik.http.routers.headnextjs.entrypoints: websecure
       traefik.http.routers.headnextjs.rule: Host(`headnextjss.2025-team-asmblii.localhost`)
       traefik.http.routers.headnextjs.tls: true
+    healthcheck:
+        test: curl --fail http://localhost:5000 || exit 1
+        interval: 60s
+        retries: 5
+        start_period: 60s
+        timeout: 10s
