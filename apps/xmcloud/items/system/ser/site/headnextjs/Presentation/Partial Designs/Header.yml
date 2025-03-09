@@ -11,7 +11,7 @@ SharedFields:
 - ID: "c7c26117-dbb1-42b2-ab5e-f7223845cca3"
   Hint: __Thumbnail
   Value: |
-    <image mediaid="{9962A055-C6BC-4FFB-B8BD-BAFD06CEB5C1}" />
+    <image mediaid="{25E28CDC-A5EF-4C88-A8AC-D19C82D0E9E1}" />
 - ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
   Hint: __Renderings
   Value: |
@@ -55,11 +55,11 @@ Languages:
         sitecore\jba@asmblii.com
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "fc0cc580-fc8e-4264-94b9-31aa931b733a"
+      Value: "48571b71-5874-4a34-a7ff-c1331cf7119f"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\jba@asmblii.com
+        sitecore\pdb@asmblii.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250308T155539Z
+      Value: 20250309T002359Z
