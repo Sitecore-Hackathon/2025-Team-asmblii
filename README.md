@@ -49,7 +49,7 @@ What parts do we instrument in this submission?
 
 ## Video link
 
-⟹ [Replace this Video link](#video-link)
+<https://share.synthesia.io/f65ae386-b0d8-4c6e-9c3c-b139406f35d9>
 
 ## Pre-requisites and Dependencies
 
